@@ -1,8 +1,8 @@
 
-define([
-	'util/loading',
-	'../../bower_components/mustache/mustache'
-], function (Loading, Mustache) {
+_define({
+	Loading: 'util/loading',
+	Mustache: '../../bower_components/mustache/mustache'
+}, function (m) {
 
 	'use strict';
 
@@ -84,15 +84,15 @@ define([
 
 		that.startLoading = function() {
 			console.log();
-			Loading.start();
+			m.Loading.start();
 		};
 
 		that.stopLoading = function() {
-			Loading.stop();
+			m.Loading.stop();
 		};
 
 		that.incLoading = function() {
-			Loading.inc();
+			m.Loading.inc();
 		};
 
 		that.setLoading = function(percent) {
@@ -100,7 +100,7 @@ define([
 			if (status > percent) {
 				return;
 			}
-			Loading.set(percent / 100);
+			m.Loading.set(percent / 100);
 		};
 
 		that.getModel = function() {
@@ -175,7 +175,7 @@ define([
 
 			data = _.extend(data, children);
 
-			html = Mustache.render(template, data);
+			html = m.Mustache.render(template, data);
 			that.$el.html(my.wrapHtml(html));
 
 			that.trigger('dom_ready');
@@ -191,7 +191,7 @@ define([
 		};
 
 		that.getHtml = function() {
-			var html = Mustache.render(that.el.innerHTML);
+			var html = m.Mustache.render(that.el.innerHTML);
 			return html;
 		};
 

@@ -40,12 +40,25 @@ module.exports = function (grunt) {
 				files: ['test/spec/{,*/}*.coffee'],
 				tasks: ['coffee:test']
 			},
-			compass: {
+			stylize: {
 				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-				tasks: ['compass'],
+				tasks: ['compass', 'concat'],
 				options: {
 					livereload: LIVERELOAD_PORT
 				}
+			},
+			livereload: {
+				options: {
+					livereload: LIVERELOAD_PORT
+				},
+				files: [
+					'<%= yeoman.app %>/{,*/}*.html',
+					'{.tmp,<%= yeoman.app %>}/styles/css/{,*/}*.css',
+					'{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+					'<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
+					'test/spec/**/*.js'
+				]
 			},
 			todist: {
 				files: [
@@ -170,7 +183,7 @@ module.exports = function (grunt) {
 		},
 		compass: {
 			options: {
-				sassDir: '<%= yeoman.app %>/styles',
+				sassDir: '<%= yeoman.app %>/styles/scss',
 				cssDir: '.tmp/styles',
 				imagesDir: '<%= yeoman.app %>/images',
 				javascriptsDir: '<%= yeoman.app %>/scripts',
@@ -183,6 +196,15 @@ module.exports = function (grunt) {
 				options: {
 					debugInfo: true
 				}
+			}
+		},
+		concat: {
+			libraries: {
+				src: [
+					'<%= yeoman.app %>/bower_components/normalize-css/normalize.css',
+					'<%= yeoman.app %>/bower_components/nprogress/nprogress.css'
+				],
+				dest: '<%= yeoman.app %>/styles/libraries.css'
 			}
 		},
 		requirejs: {

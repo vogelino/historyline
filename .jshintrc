@@ -26,6 +26,7 @@
 		"$": false,
 		"Backbone": false,
 		"App": false,
-		"require": false
+		"require": false,
+		"NProgress": false
 	}
 }

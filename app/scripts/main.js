@@ -43,10 +43,8 @@ require([
 ], function (Backbone, _, App, Loading) {
 	Backbone.history.start();
 	Loading.start();
-	window.vent = _.extend({}, Backbone.Events);
 
 	var appView = new App();
-
 	appView.setElement('#app');
 	appView.render();
 });
