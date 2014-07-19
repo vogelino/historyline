@@ -1,0 +1,6 @@
+{
+	"preset": "google",
+	"requireSpaceAfterLineComment": true,
+	"validateIndentation": "\t",
+	"disallowMixedSpacesAndTabs": "smart"
+}

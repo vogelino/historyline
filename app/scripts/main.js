@@ -16,6 +16,9 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        jquery: {
+            exports: '$'
         }
     },
     paths: {
