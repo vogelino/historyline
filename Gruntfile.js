@@ -49,7 +49,7 @@ module.exports = function (grunt) {
 			},
 			todist: {
 				files: [
-					'<%= yeoman.app %>{,*/}.html',
+					'<%= yeoman.app %>/scripts/{,*/}.html',
 					'<%= yeoman.app %>}/scripts/{,*/}*.js'
 				],
 				tasks: ['build'],
