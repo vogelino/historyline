@@ -1,0 +1,1071 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"return"
+			],
+			[
+				"s",
+				"sideMenu"
+			],
+			[
+				"ren",
+				"renderView"
+			],
+			[
+				"m",
+				"multilevelpushmenu"
+			],
+			[
+				"ba",
+				"baseView"
+			],
+			[
+				"under",
+				"underscore"
+			],
+			[
+				"rq",
+				"require"
+			],
+			[
+				"bowe",
+				"bower_components"
+			],
+			[
+				"require",
+				"requirejs"
+			],
+			[
+				"requ",
+				"requirejs"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"bx",
+				"bxsh	box-shadow"
+			],
+			[
+				"an",
+				"antialiased"
+			],
+			[
+				"gray-dr",
+				"gray-darker"
+			],
+			[
+				"brand",
+				"brand-primary"
+			],
+			[
+				"btn-info",
+				"btn-info-bg"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"pho",
+				"phonesPerPages"
+			],
+			[
+				"fu",
+				"fun	Function"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"ls",
+				"list-style"
+			],
+			[
+				"ma",
+				"max-height"
+			],
+			[
+				"email",
+				"email_dest"
+			],
+			[
+				"the",
+				"the_field"
+			],
+			[
+				"use",
+				"user_id"
+			],
+			[
+				"ur",
+				"user_level"
+			],
+			[
+				"blog",
+				"get_bloginfo"
+			],
+			[
+				"fs",
+				"font-size"
+			],
+			[
+				"no",
+				"normal"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"in_",
+				"cal_days_in_month"
+			],
+			[
+				"els",
+				"else"
+			],
+			[
+				"souha",
+				"souhaits"
+			],
+			[
+				"ema",
+				"email_message"
+			],
+			[
+				"A",
+				"Automobiles"
+			],
+			[
+				"sou",
+				"souhaits"
+			],
+			[
+				"address",
+				"address	<address>"
+			],
+			[
+				"tel",
+				"tel"
+			],
+			[
+				"ré",
+				"réessayer"
+			],
+			[
+				"partie_zone",
+				"partie_zone_email"
+			],
+			[
+				"utf",
+				"UTF-8"
+			],
+			[
+				"ve",
+				"Veuillez"
+			],
+			[
+				"the_",
+				"the_title"
+			],
+			[
+				"w",
+				"window"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"mh",
+				"min-height"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"in",
+				"text-input"
+			],
+			[
+				"mar",
+				"marque"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"p",
+				"padding"
+			],
+			[
+				"el",
+				"else"
+			],
+			[
+				"post",
+				"post_parent"
+			],
+			[
+				"if",
+				"ifelse	if … else …"
+			],
+			[
+				"fo",
+				"font-style"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"cat",
+				"cat"
+			],
+			[
+				"form",
+				"formtitle"
+			],
+			[
+				"bo",
+				"border-color"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"outer",
+				"outerHeight"
+			],
+			[
+				"out",
+				"outerHeight"
+			],
+			[
+				"ou",
+				"outerWidth"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"bd",
+				"border"
+			],
+			[
+				"slice-",
+				"slices-nav"
+			],
+			[
+				"heig",
+				"innerHeight"
+			],
+			[
+				"time",
+				"timeout	setTimeout function"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"se",
+				"section	Tag"
+			],
+			[
+				"br",
+				"border-right"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"bord",
+				"border-bottom"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"blo",
+				"bloginfo"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 207.0,
+		"selected_items":
+		[
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"lis",
+				"Package Control: List Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"en",
+				"Package Control: Enable Package"
+			],
+			[
+				"pack",
+				"Package Control: Enable Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"sycss",
+				"Set Syntax: CSS"
+			],
+			[
+				"syn",
+				"Set Syntax: LESS"
+			],
+			[
+				"pa",
+				"Package Control: Enable Package"
+			],
+			[
+				"upgra",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"upda",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"scrip",
+				"Snippet: <script>"
+			],
+			[
+				"style",
+				"Snippet: <style>"
+			],
+			[
+				"browser",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"meta",
+				"Snippet: <meta name=\"\" content=\"\">"
+			],
+			[
+				"htm",
+				"Snippet: html"
+			],
+			[
+				"hidde",
+				"Snippet: input - hidden"
+			],
+			[
+				"pick",
+				"Color picker"
+			],
+			[
+				"tra",
+				"Snippet: transition"
+			],
+			[
+				"sub",
+				"Snippet: input - submit"
+			],
+			[
+				"texta",
+				"Snippet: <textarea>"
+			],
+			[
+				"input te",
+				"Snippet: input - text"
+			],
+			[
+				"synles",
+				"Set Syntax: LESS"
+			],
+			[
+				"dif",
+				"Set Syntax: Diff"
+			],
+			[
+				"linter",
+				"SublimeLinter: Extract Annotations"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"script",
+				"Snippet: <script>"
+			],
+			[
+				"fetch",
+				"Fetch: Package"
+			],
+			[
+				"path",
+				"File: Copy Path"
+			],
+			[
+				"syntax php",
+				"Set Syntax: PHP"
+			],
+			[
+				"inclu",
+				"Snippet: include …"
+			],
+			[
+				"snipp",
+				"Snippet: input - checkbox"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"subm",
+				"Snippet: input - submit"
+			],
+			[
+				"text",
+				"Snippet: <textarea>"
+			],
+			[
+				"select",
+				"Snippet: <select>"
+			],
+			[
+				"task",
+				"Tasks: New document"
+			],
+			[
+				"fech",
+				"Fetch: Package"
+			],
+			[
+				"copy",
+				"File: Copy Path From Project"
+			],
+			[
+				"fet",
+				"Fetch: File"
+			],
+			[
+				"fetchm",
+				"Fetch: Manage"
+			],
+			[
+				"fetc",
+				"Fetch: File"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"fethc",
+				"Fetch: Package"
+			],
+			[
+				"fte",
+				"Fetch: Manage"
+			],
+			[
+				"fe",
+				"Fetch: Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 443.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/lucasvogel/Desktop/PlanFinanceLucas.rtf",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/index.html",
+		"/Volumes/Access/Sparkasse/sparkasse.rtf",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/.jshintrc",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/scripts/views/sideMenu.js",
+		"/Users/lucasvogel/Library/Application Support/Sublime Text 2/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/lucasvogel/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Applications/MAMP/htdocs/vogelino2014/wordpress/wp-content/themes/vogelino/style.css",
+		"/etc/hosts",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/scripts/app.js",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/bower.json",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/Gruntfile.js",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/scripts/configs/requireConfig.js",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/scripts/configs/require-config.js",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/scripts/require-config.js",
+		"/Users/lucasvogel/Documents/Personnel/Administratif/Finances/Achats en ligne/Sublime Text 2/licence.rtf",
+		"/Applications/MAMP/htdocs/vogelino2014/webApp/app/scripts/main.js",
+		"/Users/lucasvogel/Desktop/MultiLevelPushMenu_v2.0.9/demo/addremove/addremove.html",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/less/multilevelpushmenu.less",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/js/_main.js",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/Gruntfile.js",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/head.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/less/app.less",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/header.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/header-top-navbar.php",
+		"/Users/lucasvogel/.zshrc",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/content.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/entry-meta.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/less/bootstrap/variables.less",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/base.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/content-page.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/footer.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/lib/config.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/index.php",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/templates/page-header.php",
+		"/Applications/MAMP/htdocs/vogelino2014/.zshrc",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/js/plugins/masonry/masonry.pkgd.min.js",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/less/bootstrap/scaffolding.less",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/styles/less/style.less",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/assets/css/editor-style.css",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/style.css",
+		"/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino/lib/sidebar.php",
+		"/Applications/MAMP/htdocs/angular-phonecat/app/js/app.js",
+		"/Applications/MAMP/htdocs/angular-phonecat/app/css/bootstrap.css",
+		"/Applications/MAMP/htdocs/angular-phonecat/app/css/app.css",
+		"/Applications/MAMP/htdocs/angular-phonecat/test/unit/controllersSpec.js",
+		"/Applications/MAMP/htdocs/angular-phonecat/app/index.html",
+		"/Applications/MAMP/htdocs/angular-phonecat/app/js/controllers.js",
+		"/Applications/MAMP/htdocs/personend/karma.conf.js",
+		"/Applications/MAMP/htdocs/personend/app/styles/main.scss",
+		"/Applications/MAMP/htdocs/personend/app/index.html",
+		"/Applications/MAMP/htdocs/personend/app/views/main.html",
+		"/Applications/MAMP/htdocs/personend/app/scripts/app.js",
+		"/Applications/MAMP/htdocs/personend/app/scripts/controllers/main.js",
+		"/Applications/MAMP/htdocs/personend/Gruntfile.js",
+		"/Applications/MAMP/htdocs/personend/node_modules/karma/static/karma.js",
+		"/Applications/MAMP/htdocs/personend/test/spec/controllers/main.js",
+		"/Applications/MAMP/htdocs/personend/node_modules/karma/config.tpl.js",
+		"/Applications/MAMP/htdocs/personend/.tmp/styles/main.css",
+		"/Applications/MAMP/htdocs/personend/.bowerrc",
+		"/Applications/MAMP/htdocs/personend/.gitignore",
+		"/Applications/MAMP/htdocs/TESTS_CMS/Joomla/installation_/sql/mysql/sample_data.sql",
+		"/Applications/MAMP/htdocs/AngularWebApp-0.1/app/index.html",
+		"/Applications/MAMP/htdocs/AngularWebApp-0.1/bower.json",
+		"/Applications/MAMP/htdocs/AngularWebApp-0.1/Gruntfile.js",
+		"/Users/lucasvogel/.bash_profile",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/sendform.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/sendform2.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/sendform3.php",
+		"/Applications/MAMP/htdocs/av-autos/TODO.TODO",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/js/actions.js",
+		"/Applications/MAMP/db/sqlite/config.db",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/style.css",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/functions.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/page.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/traitement.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/header.php",
+		"/Applications/MAMP/htdocs/messieurs.ch/wp-content/themes/messieurs/header.php",
+		"/Applications/MAMP/htdocs/messieurs.ch/wp-content/themes/messieurs/js/actions.js",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/footer.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/page.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/header.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/single.php",
+		"/Users/lucasvogel/Desktop/giom.sql",
+		"/Applications/MAMP/htdocs/av-autos/.htaccess",
+		"/Applications/MAMP/htdocs/av-autos/wp-config-online-av-finance.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-config-online-av.php",
+		"/Applications/MAMP/htdocs/av-autos/intro.html",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/styles/less/style-green-2.less",
+		"/Applications/MAMP/htdocs/messieurs.ch/wp-content/themes/messieurs/page-contact.php",
+		"/Applications/MAMP/htdocs/messieurs.ch/wp-content/themes/messieurs/traitement.php",
+		"/Applications/MAMP/htdocs/av-autos/av.htaccess",
+		"/Users/lucasvogel/Desktop/av-automobiles.sql",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/index.php",
+		"/Applications/MAMP/htdocs/av-autos/index.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/styles/less/style-green.less",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/js/theme_trust.js",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/includes/project_thumb.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/includes/projects_home.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/single.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/footer.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/js/actions.js",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/js/slideshow.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/includes/projects.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/archive.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/single-projects.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/full-width.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/archives.php",
+		"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal/includes/posts_home.php",
+		"/Applications/MAMP/htdocs/Evoco/wp-content/themes/evoco/js/actions.js",
+		"/Applications/MAMP/htdocs/giom/wp-admin/includes/upgrade.php",
+		"/Users/lucasvogel/Desktop/WebsiteChangeRequestForm/index.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/category.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/functions.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/styles/css/shadowbox.css",
+		"/Applications/MAMP/htdocs/av-autos/wp-includes/pomo/translations.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/validate/demo/index.html",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/traitement.php",
+		"/Users/lucasvogel/Desktop/av-autos.sql",
+		"/Applications/MAMP/htdocs/av-autos/traitement.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/themes/av-automobiles/styles/css/bootstrap.min.css",
+		"/Applications/MAMP/htdocs/Evoco/wp-content/themes/evoco/menu.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-content/plugins/pbd-ajax-load-posts/pbd-ajax-load-posts.php",
+		"/Applications/MAMP/htdocs/vogelino2013/wp-content/themes/vogelino/index.php",
+		"/Applications/MAMP/htdocs/vogelino2013/wp-content/themes/vogelino/footer.php",
+		"/Applications/MAMP/htdocs/vogelino2013/wp-content/themes/vogelino/category-works.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-includes/theme-compat/footer.php",
+		"/Applications/MAMP/htdocs/av-autos/wp-includes/category.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Applications/MAMP/htdocs/av-autos/wp-content/themes,/Applications/MAMP/htdocs/vogelino2014/webApp/",
+			"/Applications/MAMP/htdocs/av-autos/wp-content/themes,/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino",
+			"/Applications/MAMP/htdocs/av-autos/wp-content/themes,/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino,*.php",
+			"/Applications/MAMP/htdocs/av-autos/wp-content/themes,/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino,*.html",
+			"/Applications/MAMP/htdocs/av-autos/wp-content/themes,/Applications/MAMP/htdocs/vogelino2014/wp-content/themes/vogelino",
+			"/Applications/MAMP/htdocs/av-autos/wp-content/themes",
+			"/Applications/MAMP/htdocs/av-autos",
+			"/Applications/MAMP/htdocs/giom/wp-content/themes/reveal",
+			"/Applications/MAMP/htdocs/giom",
+			"<open files>",
+			"",
+			"<open files>",
+			"/Applications/MAMP/htdocs/Evoco/wp-content/themes/evoco",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"basecontroller",
+			"app_router",
+			"app",
+			"vendor",
+			"webapp",
+			"\"",
+			"'",
+			"\"",
+			"js",
+			"wrap container",
+			"shadow",
+			"get_search_form()",
+			"v",
+			"get_search_form",
+			"roots_get_search_form",
+			"searchform",
+			"search-form",
+			"optimizeLegibility",
+			"A3A2AF",
+			"rgba(red(@black), green(@black), blue(@black),.2);",
+			"rgba(0,0,0",
+			"info",
+			"success",
+			"border-radius-base",
+			"@black",
+			":hover",
+			"link",
+			"a:hover",
+			"underline",
+			"@font-family-base",
+			"@font-family-base:",
+			"h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6",
+			"h1,",
+			"blockquote p",
+			"blockquote",
+			"blockq",
+			"h1, h2",
+			"blockquote",
+			"blockquote p",
+			"@",
+			"@brand-color",
+			"brand-color",
+			"#000",
+			"baseColor",
+			"#fff",
+			"#000",
+			"http://vogelino.ch",
+			"http://vogelino.ch/",
+			"://vogelino.ch/",
+			"vogelino.ch",
+			"/li",
+			"<a",
+			"==",
+			"phonesPerPages",
+			"$scope.allPhones.length",
+			"my.page",
+			" setPage",
+			"function",
+			"function ",
+			"$scope",
+			":",
+			"    ",
+			"orderProp",
+			"input",
+			"age",
+			"by\"",
+			"strong",
+			"options",
+			" id=\"option",
+			" id=\"option1\"",
+			"ng-mode",
+			"primary",
+			" cl",
+			"button",
+			"option",
+			"-default",
+			"\"span",
+			"span",
+			"span3",
+			"row",
+			"col-lg-",
+			"li",
+			"row",
+			"td",
+			"li",
+			"tr",
+			"0",
+			"prop",
+			"1",
+			"prop",
+			"value",
+			"}",
+			"{",
+			"age",
+			"<td>",
+			"default",
+			"myApp",
+			"href",
+			"href=",
+			"f=\"",
+			"angular-route",
+			"\"",
+			"lucas.vogel@hispeed.ch",
+			"info@avautomobiles.ch",
+			"	$_",
+			"contact",
+			"luc",
+			"email1",
+			".projectNav",
+			">-->\n",
+			"http://localhost:8888/giom",
+			"rue",
+			"address",
+			"('',",
+			"a",
+			",",
+			"adress",
+			"cv",
+			"nom",
+			"cv",
+			"bio",
+			"&eacute",
+			"search",
+			". $",
+			"$",
+			"_SESSION",
+			" != \"\"",
+			"if("
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"info@avautomobiles.ch",
+			"lucas.vogel@hispeed.ch",
+			"",
+			"http://www.elephantlab.ch/evoco",
+			"http://www.evoco.elephantlab.ch"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"var",
+				"assets/less/bootstrap/variables.less"
+			],
+			[
+				"app",
+				"assets/less/app.less"
+			],
+			[
+				"boo",
+				"app/css/bootstrap.css"
+			],
+			[
+				"index",
+				"app/index.html"
+			],
+			[
+				"main",
+				"app/views/main.html"
+			],
+			[
+				"karma",
+				"karma.conf.js"
+			],
+			[
+				"main.js",
+				"app/scripts/controllers/main.js"
+			],
+			[
+				"karmaconf",
+				"karma.conf.js"
+			],
+			[
+				"mainss",
+				".tmp/styles/main.css"
+			],
+			[
+				"speccontrolle",
+				"test/spec/controllers/main.js"
+			],
+			[
+				"mainhtm",
+				"app/views/main.html"
+			],
+			[
+				"maijs",
+				"app/scripts/controllers/main.js"
+			],
+			[
+				"send",
+				"wp-content/themes/av-automobiles/sendform3.php"
+			],
+			[
+				"to",
+				"TODO.TODO"
+			],
+			[
+				"sty",
+				"wp-content/themes/av-automobiles/styles/less/style-green.less"
+			],
+			[
+				"ac",
+				"wp-content/themes/av-automobiles/js/actions.js"
+			],
+			[
+				"tot",
+				"TODO.TODO"
+			],
+			[
+				"footer",
+				"wp-content/themes/av-automobiles/footer.php"
+			],
+			[
+				"category",
+				"wp-content/themes/av-automobiles/category.php"
+			],
+			[
+				"categ",
+				"wp-includes/category.php"
+			],
+			[
+				"sing",
+				"wp-content/themes/av-automobiles/single.php"
+			],
+			[
+				"fun",
+				"wp-content/themes/av-automobiles/functions.php"
+			],
+			[
+				"funct",
+				"wp-includes/functions.php"
+			],
+			[
+				"single",
+				"wp-content/themes/av-automobiles/single.php"
+			],
+			[
+				"page",
+				"wp-content/themes/av-automobiles/page.php"
+			],
+			[
+				"actio",
+				"wp-content/themes/av-automobiles/js/actions.js"
+			],
+			[
+				"styleless",
+				"wp-content/themes/av-automobiles/styles/less/style.less"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 309.0,
+	"status_bar_visible": true
+}
