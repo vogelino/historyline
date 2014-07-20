@@ -2,7 +2,7 @@
 var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
+var mountFolder = function(connect, dir) {
 	return connect.static(require('path').resolve(dir));
 };
 
@@ -13,7 +13,7 @@ var mountFolder = function (connect, dir) {
 // 'test/spec/**/*.js'
 // templateFramework: 'lodash'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 	// show elapsed time at the end
 	require('time-grunt')(grunt);
 	// load all grunt tasks
@@ -47,19 +47,6 @@ module.exports = function (grunt) {
 					livereload: LIVERELOAD_PORT
 				}
 			},
-			livereload: {
-				options: {
-					livereload: LIVERELOAD_PORT
-				},
-				files: [
-					'<%= yeoman.app %>/{,*/}*.html',
-					'{.tmp,<%= yeoman.app %>}/styles/css/{,*/}*.css',
-					'{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-					'<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
-					'test/spec/**/*.js'
-				]
-			},
 			todist: {
 				files: [
 					'<%= yeoman.app %>/scripts/{,*/}.html',
@@ -92,7 +79,7 @@ module.exports = function (grunt) {
 			},
 			livereload: {
 				options: {
-					middleware: function (connect) {
+					middleware: function(connect) {
 						return [
 							lrSnippet,
 							mountFolder(connect, '.tmp'),
@@ -104,7 +91,7 @@ module.exports = function (grunt) {
 			test: {
 				options: {
 					port: 9001,
-					middleware: function (connect) {
+					middleware: function(connect) {
 						return [
 							lrSnippet,
 							mountFolder(connect, '.tmp'),
@@ -116,7 +103,7 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					middleware: function (connect) {
+					middleware: function(connect) {
 						return [
 							mountFolder(connect, yeomanConfig.dist)
 						];
@@ -188,7 +175,7 @@ module.exports = function (grunt) {
 				imagesDir: '<%= yeoman.app %>/images',
 				javascriptsDir: '<%= yeoman.app %>/scripts',
 				fontsDir: '<%= yeoman.app %>/styles/fonts',
-				importPath: '<%= yeoman.app %>/bower_components',
+				importPath: '<%= yeoman.app %>/styles/scss',
 				relativeAssets: true
 			},
 			dist: {},
@@ -332,11 +319,11 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('createDefaultTemplate', function () {
+	grunt.registerTask('createDefaultTemplate', function() {
 		grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
 	});
 
-	grunt.registerTask('server', function (target) {
+	grunt.registerTask('server', function(target) {
 		if (target === 'dist') {
 			return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
 		}
@@ -348,7 +335,7 @@ module.exports = function (grunt) {
 				'createDefaultTemplate',
 				'jst',
 				'compass:server',
-				'connect:test',
+				// 'connect:test',
 				'watch:livereload'
 			]);
 		}

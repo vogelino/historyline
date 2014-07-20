@@ -2,11 +2,11 @@
 _define({
 	Loading: 'util/loading',
 	Mustache: '../../bower_components/mustache/mustache'
-}, function (m) {
+}, function(m) {
 
 	'use strict';
 
-	var BaseView = function () {
+	var BaseView = function() {
 		var my = {}, that = {};
 		my.model = undefined;
 

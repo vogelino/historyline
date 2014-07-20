@@ -1,6 +1,6 @@
 // original function: uberMetrics Technologies
 // customized by Lucas Vogel aka Vogelino
-window._define = (function () {
+window._define = (function() {
 	'use strict';
 
 	var get = function(modules) {
@@ -17,7 +17,7 @@ window._define = (function () {
 		});
 		return m;
 	};
-	return function (modules, f) {
+	return function(modules, f) {
 		define(get(modules), function() {
 			var m = assign(modules, arguments);
 			return f(m);

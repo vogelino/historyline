@@ -2,7 +2,7 @@ _define({
 	BaseView: '../base/BaseView',
 	Template: 'text!app/app.html',
 	Loading: 'util/loading',
-	Content: 'content/content'
+	BarchartTest: 'tests/barchartTest'
 }, function(m) {
 	'use strict';
 
@@ -16,7 +16,7 @@ _define({
 			that.on('view_ready', that.onViewReady);
 
 			that.children = {
-				content: new m.Content()
+				content: new m.BarchartTest()
 			};
 			return that;
 		};

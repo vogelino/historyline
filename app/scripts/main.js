@@ -31,7 +31,7 @@ require.config({
 		bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
 		nprogress: '../bower_components/nprogress/nprogress',
 		text: '../bower_components/requirejs-text/text',
-		d3: '::/bower_components/d3/d3'
+		d3: '../bower_components/d3/d3'
 	}
 });
 
