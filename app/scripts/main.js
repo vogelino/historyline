@@ -31,7 +31,8 @@ require.config({
 		bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
 		nprogress: '../bower_components/nprogress/nprogress',
 		text: '../bower_components/requirejs-text/text',
-		d3: '../bower_components/d3/d3'
+		d3: '../bower_components/d3/d3',
+		moment: '../bower_components/moment/moment'
 	}
 });
 
@@ -40,7 +41,7 @@ require([
 	'underscore',
 	'app/app',
 	'util/loading'
-], function (Backbone, _, App, Loading) {
+], function(Backbone, _, App, Loading) {
 	Backbone.history.start();
 	Loading.start();
 

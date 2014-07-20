@@ -12,7 +12,7 @@ _define({}, function() {
 					   _.isArray(arguments[0])) {
 				numbers = arguments[0];
 			}
-			return _.reduce(arguments, function(memo, num) {
+			return _.reduce(numbers, function(memo, num) {
 				return memo + num;
 			});
 		};
@@ -25,7 +25,7 @@ _define({}, function() {
 					   _.isArray(arguments[0])) {
 				numbers = arguments[0];
 			}
-			return _.reduce(arguments, function(memo, num) {
+			return _.reduce(numbers, function(memo, num) {
 				return memo * num;
 			});
 		};
@@ -38,7 +38,7 @@ _define({}, function() {
 					   _.isArray(arguments[0])) {
 				numbers = arguments[0];
 			}
-			return _.reduce(arguments, function(memo, num) {
+			return _.reduce(numbers, function(memo, num) {
 				return memo - num;
 			});
 		};
@@ -51,7 +51,7 @@ _define({}, function() {
 					   _.isArray(arguments[0])) {
 				numbers = arguments[0];
 			}
-			return _.reduce(arguments, function(memo, num) {
+			return _.reduce(numbers, function(memo, num) {
 				return memo / num;
 			});
 		};

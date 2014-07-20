@@ -2,7 +2,8 @@ _define({
 	BaseView: 'base/BaseView',
 	Template : 'text!tests/barchartTest.html',
 	d3: 'd3',
-	operators: 'util/operators'
+	operators: 'util/operators',
+	request: 'util/request'
 }, function(m) {
 	'use strict';
 
@@ -19,6 +20,28 @@ _define({
 		};
 
 		that.onViewReady = function() {
+			var req = m.request().new({
+				location: '35.215016%2C31.773059',
+				distance: 200,
+				sources: 'ushahidi%2Creliefweb%2Cvdc_syria'
+			});
+
+			req.done(function(response) {
+				my.createChart(my.parseResponse(response));
+			});
+		};
+
+		my.parseResponse = function(data) {
+			var newData = _.map(data.data, function(item) {
+				return o.sum(_.map(item.tags, function(tag) {
+					return tag.confidence;
+				}));
+			});
+
+			return newData;
+		};
+
+		my.createChart = function(data) {
 			var
 				bars,
 				labels,
@@ -30,7 +53,7 @@ _define({
 				barsSpace = 2,
 				labelFontSize = 12,
 				avaliableHeightDivider = 4,
-				dataset = my.getRandomDataSet(50),
+				dataset = data,
 				$chart = that.$el.find('#chart-container'),
 				svg = m.d3.select($chart[0]).append('svg'),
 				scale = m.d3.scale.linear();
@@ -137,15 +160,6 @@ _define({
 
 			labels.attr('font-family', 'arial')
 				  .attr('font-size', labelFontSize + 'px');
-		};
-
-		my.getRandomDataSet = function(length) {
-			var dataset = [];
-			for (var i = 0; i < length; i++) {
-				var newNumber = o.pro(Math.random(), 10);
-				dataset.push(Math.round(newNumber));
-			}
-			return dataset;
 		};
 
 		my.getRelativeBarWidth = function(totalWidth, barsAmount, margin) {

@@ -2,7 +2,8 @@ _define({
 	BaseView: '../base/BaseView',
 	Template: 'text!app/app.html',
 	Loading: 'util/loading',
-	BarchartTest: 'tests/barchartTest'
+	WordpressTest: 'tests/wordpressTest',
+	Moment: 'moment'
 }, function(m) {
 	'use strict';
 
@@ -10,13 +11,14 @@ _define({
 		var that = {};
 
 		that.name = 'App';
+		that.instanceId = that.name + m.Moment();
 		that.template = m.Template;
 
 		that.construct = function() {
 			that.on('view_ready', that.onViewReady);
 
 			that.children = {
-				content: new m.BarchartTest()
+				content: new m.WordpressTest()
 			};
 			return that;
 		};
@@ -25,10 +27,6 @@ _define({
 			that.renderComponent();
 			that.triggerChildren('after_render');
 			that.trigger('view_ready');
-		};
-
-		that.onViewReady = function() {
-			m.Loading.stop();
 		};
 
 		var inherited = new m.BaseView();
