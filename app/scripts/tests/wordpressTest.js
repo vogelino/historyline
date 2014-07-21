@@ -3,6 +3,7 @@ _define({
 	Template : 'text!tests/wordpressTest.html',
 	PostsView: 'components/posts/postsView',
 	PostsModel: 'components/posts/postsModel',
+	Header: 'components/header/header',
 	request: 'util/request',
 	Moment: 'moment',
 	Loading: 'util/loading'
@@ -16,6 +17,10 @@ _define({
 		that.instanceId = that.name + m.Moment();
 		that.template = m.Template;
 
+		that.events = {
+			'click button.refresh': 'forceRefresh'
+		};
+
 		that.construct = function() {
 			that.on('view_ready', that.onViewReady);
 
@@ -26,7 +31,9 @@ _define({
 			my.postsCollection = new PostsCollection();
 			my.postsView.setCollection(my.postsCollection);
 
+			var header = new m.Header();
 			that.children = {
+				header: header,
 				posts: my.postsView
 			};
 
@@ -38,39 +45,74 @@ _define({
 		};
 
 		that.onViewReady = function() {
-			that.fetchPosts();
-
-			that.startLiveRefresh();
+			that.fetchPosts({
+				liveRefresh: false
+			});
 		};
 
 		that.startLiveRefresh = function() {
 			my.liveRefresh = setTimeout(function() {
 				that.fetchPosts();
 				that.startLiveRefresh();
-			}, 3000);
+			}, 5000);
 		};
 
 		that.stopLiveRefresh = function() {
 			 clearTimeout(my.liveRefresh);
 		};
 
-		that.fetchPosts = function() {
-			console.log('fetch.start');
-			var req = m.request().new('get_recent_posts', {
-				tagSlug: 'test'
+		that.forceRefresh = function() {
+			m.Loading.start();
+			that.fetchPosts({
+				liveRefresh: false
+			}).done(function() {
+				var $message = that.$el.find('.refresh-done-message');
+				$message.slideDown();
+				_.delay(function() {
+					$message.slideUp();
+				}, 2000);
 			});
+		};
+
+		that.fetchPosts = function(options) {
+			console.log('fetch.start');
+			var
+				$dfd = $.Deferred(),
+				req = m.request().new('get_recent_posts', {
+					tagSlug: 'test',
+					order: 'DESC'
+				});
 
 			req.done(function(response) {
 				var posts = [];
 				_.each(response.posts, function(val) {
-					var model = new m.PostsModel();
+					var model,
+						oldModel = my.postsCollection.get(val.id);
+					if (!_.isUndefined(oldModel)) {
+						model = oldModel;
+					}
+					else {
+						model = new m.PostsModel();
+					}
 					model.set(val);
+					if (model.hasChanged()) {
+						m.Loading.start();
+					}
 					posts.push(model);
 				});
 				my.postsCollection.set(posts);
 				m.Loading.stop();
 				console.log('fetch.done');
+				$dfd.resolve();
+				if (options && options.liveRefresh) {
+					that.startLiveRefresh();
+				}
+			}).fail(function() {
+				that.stopLiveRefresh();
+				$dfd.reject();
 			});
+
+			return $dfd.promise();
 		};
 
 		var inherited = m.BaseView();

@@ -30,6 +30,7 @@ require.config({
 		underscore: '../bower_components/underscore/underscore',
 		bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
 		nprogress: '../bower_components/nprogress/nprogress',
+		image: '../bower_components/requirejs-plugins/src/image',
 		text: '../bower_components/requirejs-text/text',
 		d3: '../bower_components/d3/d3',
 		moment: '../bower_components/moment/moment'
@@ -43,6 +44,8 @@ require([
 	'util/loading'
 ], function(Backbone, _, App, Loading) {
 	Backbone.history.start();
+	// window.evenwt = _.extend({}, Backbone.Events);
+	Loading.init();
 	Loading.start();
 
 	var appView = new App();
