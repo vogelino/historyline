@@ -26,7 +26,7 @@ _define({
 
 		that.destructor = function() {
 			that.destructChildren();
-			that.getEvent().off(null, null, that.instanceId);
+			// that.getEvent().off(null, null, that.instanceId);
 			var model = that.getModel();
 			if (model) {
 				model.destructor();
@@ -87,7 +87,7 @@ _define({
 		};
 
 		that.setMyElement = function($element) {
-			var $finalElement = $element ? $element : $('.' + that.name + that.cid);
+			var $finalElement = $element ? $element : $('#' + that.name + that.cid);
 			if ($finalElement.length === 1) {
 				that.setElement($finalElement);
 				return true;
@@ -216,7 +216,8 @@ _define({
 		};
 
 		my.wrapHtml = function(html) {
-			var prefix = '<div class="' + that.name + that.cid + '">',
+			var prefix = '<div class="' + that.name + '" ' +
+					'id="' + that.name + that.cid + '">',
 				suffix = '</div>';
 
 			return prefix + html + suffix;
@@ -229,21 +230,22 @@ _define({
 
 		that.setCollection = function(model) {
 			that.collection = model;
-			that.collection.on('add', function(model) {
+			that.collection.on('add', function(addedModel) {
 				var view = that.getSubView();
-				view.setModel(model);
+				view.setModel(addedModel);
 				that.viewsList.push(view);
 				that.renderCollection();
 			});
 			that.collection.on('change', function() {
 				that.renderCollection();
 			});
-			that.collection.on('remove', function(model) {
+			that.collection.on('remove', function(modelToRemove) {
 				_.each(that.viewsList, function(view) {
 					var thatViewModel = view.getModel();
-					if (thatViewModel.instanceId === model.instanceId) {
+					if (thatViewModel.id ===
+							modelToRemove.id) {
 						view.destructor();
-						model.destructor();
+						modelToRemove.destructor();
 					}
 				});
 				that.renderCollection();
@@ -269,6 +271,10 @@ _define({
 
 		that.getCollection = function() {
 			return that.collection;
+		};
+
+		that.getEvent = function() {
+			return window.event;
 		};
 
 		_.extend(that, Backbone.Events);

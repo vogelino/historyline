@@ -10,6 +10,10 @@ _define({}, function() {
 
 		};
 
+		that.destructor = function() {
+			that.off();
+		};
+
 		var Model = Backbone.Model.extend(that);
 		that = new Model();
 		that.construct.apply(that, arguments);
