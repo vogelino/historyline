@@ -18,7 +18,12 @@ _define({
 		};
 
 		that.getTemplateData = function() {
-			return that.getModel().attributes;
+			var model = that.getModel();
+			return {
+				title: model.get('title'),
+				date: m.Moment(model.get('date'), 'YYYY-MM-DD HH:mm:ss').fromNow(),
+				content: model.get('content')
+			};
 		};
 
 		that.onViewReady = function() {

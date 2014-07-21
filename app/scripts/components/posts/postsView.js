@@ -10,7 +10,7 @@ _define({
 
 		that.name = 'postsView';
 		that.instanceId = that.name + m.Moment();
-		that.template = 'Loading…';
+		that.template = ' ';
 		that.children = {};
 
 		that.construct = function() {
