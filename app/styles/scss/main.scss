@@ -1,6 +1,7 @@
 $icon-font-path: '/bower_components/sass-bootstrap/fonts/';
 
 @import '../../bower_components/sass-bootstrap/lib/bootstrap';
+// @include url('../../bower_components/Bootflat/bootflat/css/bootflat.css');
 
 body {
 	background: #f0f0f0;

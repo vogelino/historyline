@@ -10,6 +10,8 @@ _define({
 }, function(m) {
 	'use strict';
 
+	var LIVE_REFRESH_DELAY = 10000;
+
 	var wordpressTest = function() {
 		var that = {}, my = {};
 
@@ -46,7 +48,7 @@ _define({
 
 		that.onViewReady = function() {
 			that.fetchPosts({
-				liveRefresh: false
+				liveRefresh: true
 			});
 		};
 
@@ -70,7 +72,7 @@ _define({
 				$message.slideDown();
 				_.delay(function() {
 					$message.slideUp();
-				}, 2000);
+				}, LIVE_REFRESH_DELAY);
 			});
 		};
 
