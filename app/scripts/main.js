@@ -41,7 +41,8 @@ require([
 	'backbone',
 	'underscore',
 	'app/app',
-	'util/loading'
+	'util/loading',
+	'bootstrap'
 ], function(Backbone, _, App, Loading) {
 	Backbone.history.start();
 	// window.evenwt = _.extend({}, Backbone.Events);
