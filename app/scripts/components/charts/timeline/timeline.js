@@ -340,16 +340,27 @@ _define({
 				var
 					startValue,
 					endValue,
-					duration;
+					duration,
+					goesLater = false,
+					goesEarlier = false,
+					now = m.Moment().format(dataEnv.unit);
 
 				startValue = m.Moment(d.startDate, DATE_FORMAT).
 					format(dataEnv.unit);
-				if (_.isUndefined(d.endDate)) {
-					endValue = m.Moment().format(dataEnv.unit);
+				if (_.isUndefined(d.endDate) || d.endDate > dataEnv.endValue) {
+					endValue = now;
+					if (d.endDate > endValue) {
+						goesLater = true;
+					}
 				}
 				else {
 					endValue = m.Moment(d.endDate, DATE_FORMAT).
 						format(dataEnv.unit);
+				}
+
+				if (startValue < dataEnv.startValue) {
+					startValue = dataEnv.startValue;
+					goesEarlier = true;
 				}
 
 				startValue = parseInt(startValue, 10);
@@ -362,7 +373,9 @@ _define({
 						title: d.name,
 						startValue: startValue,
 						endValue: endValue,
-						duration: duration
+						duration: duration,
+						goesLater: goesLater,
+						goesEarlier: goesEarlier
 					});
 				}
 			});
