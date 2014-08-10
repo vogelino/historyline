@@ -5,8 +5,7 @@ _define({
 	PostsModel: 'components/posts/postsModel',
 	Header: 'components/header/header',
 	Moment: 'moment',
-	Loading: 'util/loading',
-	Contentful: 'contentful'
+	Loading: 'util/loading'
 }, function(m) {
 	'use strict';
 
@@ -56,7 +55,7 @@ _define({
 			my.liveRefresh = setTimeout(function() {
 				that.fetchPosts();
 				that.startLiveRefresh();
-			}, 5000);
+			}, LIVE_REFRESH_DELAY);
 		};
 
 		that.stopLiveRefresh = function() {
@@ -68,11 +67,6 @@ _define({
 			that.fetchPosts({
 				liveRefresh: false
 			}).done(function() {
-				var $message = that.$el.find('.refresh-done-message');
-				$message.slideDown();
-				_.delay(function() {
-					$message.slideUp();
-				}, LIVE_REFRESH_DELAY);
 			});
 		};
 
@@ -101,15 +95,21 @@ _define({
 				});
 				my.postsCollection.set(posts);
 				m.Loading.stop();
+				window.inlineNotif.show({
+					type: 'success',
+					title: 'success',
+					message: 'Api reached successfully'
+				});
 				console.log('fetch.done');
 				$dfd.resolve();
 				if (options && options.liveRefresh) {
 					that.startLiveRefresh();
 				}
-			}, function() {
-				var $message = that.$el.find('.refresh-fail-message');
-				$message.slideDown();
+			}, function(error) {
 				m.Loading.stop();
+				window.inlineNotif.show({
+					message: error.message
+				});
 				that.stopLiveRefresh();
 				$dfd.reject();
 			});
