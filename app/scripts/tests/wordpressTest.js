@@ -4,9 +4,9 @@ _define({
 	PostsView: 'components/posts/postsView',
 	PostsModel: 'components/posts/postsModel',
 	Header: 'components/header/header',
-	request: 'util/request',
 	Moment: 'moment',
-	Loading: 'util/loading'
+	Loading: 'util/loading',
+	Contentful: 'contentful'
 }, function(m) {
 	'use strict';
 
@@ -78,14 +78,11 @@ _define({
 
 		that.fetchPosts = function(options) {
 			console.log('fetch.start');
-			var
-				$dfd = $.Deferred(),
-				req = m.request().new('get_recent_posts', {
-					tagSlug: 'test',
-					order: 'DESC'
-				});
+			var $dfd = $.Deferred();
 
-			req.done(function(response) {
+			window.Api.entries({
+				'content_type': '2svEnQffpKYo0we00YEmkg'
+			}).then(function(response) {
 				var posts = [];
 				_.each(response.posts, function(val) {
 					var model,
@@ -109,7 +106,10 @@ _define({
 				if (options && options.liveRefresh) {
 					that.startLiveRefresh();
 				}
-			}).fail(function() {
+			}, function() {
+				var $message = that.$el.find('.refresh-fail-message');
+				$message.slideDown();
+				m.Loading.stop();
 				that.stopLiveRefresh();
 				$dfd.reject();
 			});
