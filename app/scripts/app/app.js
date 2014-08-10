@@ -2,7 +2,7 @@ _define({
 	BaseView: '../base/BaseView',
 	Template: 'text!app/app.html',
 	Loading: 'util/loading',
-	Content: 'components/charts/timeline/timeline',
+	Content: 'pages/content/content',
 	Moment: 'moment',
 	InlineNotification: 'util/inlineNotification/inlineNotification',
 	Header: 'components/header/header'

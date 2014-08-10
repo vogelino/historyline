@@ -1,15 +1,11 @@
 _define({
 	BaseView: 'base/BaseView',
 	Template : 'text!pages/content/content.html',
-	PostsView: 'components/posts/postsView',
-	PostsModel: 'components/posts/postsModel',
-	Header: 'components/header/header',
+	Timeline: 'components/charts/timeline/timeline',
 	Moment: 'moment',
 	Loading: 'util/loading'
 }, function(m) {
 	'use strict';
-
-	var LIVE_REFRESH_DELAY = 10000;
 
 	var content = function() {
 		var that = {}, my = {};
@@ -18,104 +14,70 @@ _define({
 		that.instanceId = that.name + m.Moment();
 		that.template = m.Template;
 
-		that.events = {
-			'click button.refresh': 'forceRefresh'
+		that.children = {
+			timeline: new m.Timeline()
 		};
 
 		that.construct = function() {
 			that.on('view_ready', that.onViewReady);
-
-			my.postsView = new m.PostsView();
-			var PostsCollection = Backbone.Collection.extend({
-				model: m.PostsModel
-			});
-			my.postsCollection = new PostsCollection();
-			my.postsView.setCollection(my.postsCollection);
-
-			var header = new m.Header();
-			that.children = {
-				header: header,
-				posts: my.postsView
-			};
-
 			return that;
 		};
 
-		that.postDestructor = function() {
-			that.stopLiveRefresh();
-		};
-
 		that.onViewReady = function() {
-			// that.fetchPosts({
-			// 	liveRefresh: true
-			// });
-			m.Loading.stop();
-		};
-
-		that.startLiveRefresh = function() {
-			my.liveRefresh = setTimeout(function() {
-				that.fetchPosts();
-				that.startLiveRefresh();
-			}, LIVE_REFRESH_DELAY);
-		};
-
-		that.stopLiveRefresh = function() {
-			 clearTimeout(my.liveRefresh);
-		};
-
-		that.forceRefresh = function() {
-			m.Loading.start();
-			that.fetchPosts({
-				liveRefresh: false
-			}).done(function() {
+			that.fetch().always(function() {
+				m.Loading.stop();
 			});
 		};
 
-		that.fetchPosts = function(options) {
+		that.fetch = function() {
 			console.log('fetch.start');
-			var $dfd = $.Deferred();
+			var
+				$dfdSingleEvents = $.Deferred(),
+				$dfdDurationEvents = $.Deferred(),
+				$dfdTotal = $.Deferred();
 
 			window.Api.entries({
 				'content_type': '2svEnQffpKYo0we00YEmkg'
 			}).then(function(response) {
-				var posts = [];
-				_.each(response.posts, function(val) {
-					var model,
-						oldModel = my.postsCollection.get(val.id);
-					if (!_.isUndefined(oldModel)) {
-						model = oldModel;
-					}
-					else {
-						model = new m.PostsModel();
-					}
-					model.set(val);
-					if (model.hasChanged()) {
-						m.Loading.start();
-					}
-					posts.push(model);
-				});
-				my.postsCollection.set(posts);
-				m.Loading.stop();
-				window.inlineNotif.show({
-					type: 'success',
-					title: 'success',
-					message: 'Api reached successfully'
-				});
-				console.log('fetch.done');
-				$dfd.resolve();
-				if (options && options.liveRefresh) {
-					that.startLiveRefresh();
-				}
+				var cleanedResponse = my.parseResponse(response);
+				$dfdSingleEvents.resolve(cleanedResponse);
 			}, function(error) {
-				m.Loading.stop();
-				window.inlineNotif.show({
-					message: error.message
-				});
-				that.stopLiveRefresh();
-				$dfd.reject();
+				$dfdSingleEvents.reject(error);
 			});
 
-			return $dfd.promise();
+			window.Api.entries({
+				'content_type': '4YRFiMRvKEUIKamUk0Gauo'
+			}).then(function(response) {
+				var cleanedResponse = my.parseResponse(response);
+				$dfdDurationEvents.resolve(cleanedResponse);
+			}, function(error) {
+				$dfdDurationEvents.reject(error);
+			});
+
+			$.when($dfdSingleEvents, $dfdDurationEvents)
+				.done(function(res1, res2) {
+					var cleanedResponse = _.union(res1, res2);
+					that.children.timeline.setData(cleanedResponse);
+					window.inlineNotif.show({
+						type: 'success',
+						title: 'success',
+						message: 'Api reached successfully'
+					});
+					console.log('fetch.done');
+					$dfdTotal.resolve();
+				}).fail(function(error) {
+					window.inlineNotif.show({
+						message: error.message
+					});
+					$dfdTotal.reject();
+				});
+			return $dfdTotal.promise();
+		};
+
+		my.parseResponse = function(response) {
+			return _.map(response, function(data) {
+				return data.fields;
+			});
 		};
 
 		var inherited = m.BaseView();

@@ -8,15 +8,59 @@ _define({
 }, function(m) {
 	'use strict';
 
-	var DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+	var DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ssZ';
 
-	var barchartTest = function() {
+	var timeline = function() {
 		var that = {}, my = {};
 
-		that.name = 'barchartTest';
+		that.name = 'timeline';
 		that.template = m.Template;
 		that.instanceId = that.name + m.Moment();
 		var o = m.Operators();
+
+		that.dummyData = [{
+			'title': 'Life',
+			'startDate': '1993-06-21 00:00:00'
+		},
+		{
+			'title': 'Chile',
+			'startDate': '1994-01-01 00:00:00',
+			'endDate': '1997-12-31 00:00:00'
+		},
+		{
+			'title': 'Primary school',
+			'startDate': '1998-01-01 00:00:00',
+			'endDate': '2000-12-31 00:00:00'
+		},
+		{
+			'title': 'Secondary school',
+			'startDate': '2000-01-01 00:00:00',
+			'endDate': '2008-12-31 00:00:00'
+		},
+		{
+			'title': 'Eracom',
+			'startDate': '2008-01-01 00:00:00',
+			'endDate': '2012-12-31 00:00:00'
+		},
+		{
+			'title': 'Graf Miville intership',
+			'startDate': '2009-01-01 00:00:00',
+			'endDate': '2010-12-31 00:00:00'
+		},
+		{
+			'title': '7sky intership',
+			'startDate': '2011-01-01 00:00:00',
+			'endDate': '2012-12-31 00:00:00'
+		},
+		{
+			'title': 'uberMetrics intership',
+			'startDate': '2012-01-01 00:00:00',
+			'endDate': '2013-12-31 00:00:00'
+		},
+		{
+			'title': 'uberMetrics',
+			'startDate': '2013-01-01 00:00:00'
+		}];
 
 		my.options = {
 			chart: {
@@ -25,7 +69,8 @@ _define({
 				bar: {
 					height: 20,
 					space: 4,
-					borderRadius: 2
+					borderRadius: 2,
+					minWidth: 5
 				},
 				borderWidth: 1,
 				labels: {
@@ -41,59 +86,13 @@ _define({
 		};
 
 		that.construct = function() {
-			that.on('view_ready', that.onViewReady);
+			// that.on('view_ready', that.onViewReady);
 			return that;
 		};
 
 		that.onViewReady = function() {
-			m.Loading.stop();
-			my.createChart([
-				{
-					'title': 'Life',
-					'startDate': '1993-06-21 00:00:00',
-					'endDate': m.Moment().format(DATE_FORMAT)
-				},
-				{
-					'title': 'Chile',
-					'startDate': '1994-01-01 00:00:00',
-					'endDate': '1997-12-31 00:00:00'
-				},
-				{
-					'title': 'Primary school',
-					'startDate': '1998-01-01 00:00:00',
-					'endDate': '2000-12-31 00:00:00'
-				},
-				{
-					'title': 'Secondary school',
-					'startDate': '2000-01-01 00:00:00',
-					'endDate': '2008-12-31 00:00:00'
-				},
-				{
-					'title': 'Eracom',
-					'startDate': '2008-01-01 00:00:00',
-					'endDate': '2012-12-31 00:00:00'
-				},
-				{
-					'title': 'Graf Miville intership',
-					'startDate': '2009-01-01 00:00:00',
-					'endDate': '2010-12-31 00:00:00'
-				},
-				{
-					'title': '7sky intership',
-					'startDate': '2011-01-01 00:00:00',
-					'endDate': '2012-12-31 00:00:00'
-				},
-				{
-					'title': 'uberMetrics intership',
-					'startDate': '2012-01-01 00:00:00',
-					'endDate': '2013-12-31 00:00:00'
-				},
-				{
-					'title': 'uberMetrics',
-					'startDate': '2013-01-01 00:00:00',
-					'endDate': m.Moment().format(DATE_FORMAT)
-				}
-			]);
+			my.createChart(that.data);
+			my.createChart(that.dummyData);
 		};
 
 		my.createChart = function(data) {
@@ -137,6 +136,7 @@ _define({
 			lines.attr('width', chartWidth).
 				attr('height', borderWidth).
 				attr('y', function(d, index) {
+					index = o.sum(index, 1);
 					return o.sum(
 						o.pro(barHeight, index),
 						o.pro(borderWidth, index),
@@ -152,7 +152,10 @@ _define({
 				.attr('class', 'time-event');
 
 			events.attr('width', function(d) {
-				return Math.floor(o.pro(d.duration, columnWidth));
+				var
+					minWidth = my.options.chart.bar.minWidth,
+					width = Math.floor(o.pro(d.duration, columnWidth));
+				return width >= minWidth ? width : minWidth;
 			});
 
 			events.attr('ry', my.options.chart.bar.borderRadius);
@@ -201,7 +204,8 @@ _define({
 				.append('g');
 
 			labelsTexts = labels.append('text');
-			labelsArrows = labels.append('polygon');
+			labelsArrows = labels.append('polygon')
+				.attr('class', 'labels-arrows');
 
 			labelsTexts.text(function(d) {
 				return d;
@@ -279,37 +283,40 @@ _define({
 			return newData;
 		};
 
-		my.getDataEvironement = function() {
-			return {
-				unit: 'YYYY',
-				startValue: 1901,
-				endValue: 2000
-			};
-		};
-
 		my.getDataWithAdaptedUnits = function(data) {
 			var
-				dataEnv = my.getDataEvironement(),
+				dataEnv = my.options.view,
 				adaptedData = [];
 
 			_.each(data, function(d) {
 				var
-					startValue = m.Moment(d.startDate, DATE_FORMAT).
-						format(dataEnv.unit),
-					endValue = m.Moment(d.endDate, DATE_FORMAT).
-						format(dataEnv.unit),
+					startValue,
+					endValue,
 					duration;
+
+				startValue = m.Moment(d.startDate, DATE_FORMAT).
+					format(dataEnv.unit);
+				if (_.isUndefined(d.endDate)) {
+					endValue = m.Moment().format(dataEnv.unit);
+				}
+				else {
+					endValue = m.Moment(d.endDate, DATE_FORMAT).
+						format(dataEnv.unit);
+				}
 
 				startValue = parseInt(startValue, 10);
 				endValue = parseInt(endValue, 10);
 				duration = endValue - startValue;
 
-				adaptedData.push({
-					title: d.title,
-					startValue: startValue,
-					endValue: endValue,
-					duration: duration
-				});
+				if (startValue >= dataEnv.startValue &&
+					endValue <= dataEnv.endValue) {
+					adaptedData.push({
+						title: d.name,
+						startValue: startValue,
+						endValue: endValue,
+						duration: duration
+					});
+				}
 			});
 
 			return adaptedData;
@@ -319,11 +326,16 @@ _define({
 
 		};
 
+		that.setData = function(data) {
+			that.data = data;
+			my.createChart(that.data);
+		};
+
 		var inherited = m.BaseView();
 		that = _.extend(inherited, that);
 		that.construct.apply(that, arguments);
 		return that;
 	};
 
-	return barchartTest;
+	return timeline;
 });
