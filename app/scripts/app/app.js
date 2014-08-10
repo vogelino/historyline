@@ -4,7 +4,8 @@ _define({
 	Loading: 'util/loading',
 	Content: 'components/charts/timeline/timeline',
 	Moment: 'moment',
-	InlineNotification: 'util/inlineNotification/inlineNotification'
+	InlineNotification: 'util/inlineNotification/inlineNotification',
+	Header: 'components/header/header'
 }, function(m) {
 	'use strict';
 
@@ -19,6 +20,7 @@ _define({
 			that.on('view_ready', that.onViewReady);
 
 			that.children = {
+				header: new m.Header(),
 				content: new m.Content(),
 				inlineNotification: new m.InlineNotification()
 			};

@@ -1,0 +1,22 @@
+.timeline-chart {
+	padding: 10px;
+	float: left;
+	box-sizing: border-box;
+}
+
+.time-event {
+	border-radius: 3px;
+	fill: #010101;
+	cursor: pointer;
+}
+
+.time-label {
+	font-size: 12px;
+	line-height: 12px;
+	background: #000;
+	fill: #fff;
+}
+
+.labels-container {
+	fill: #000;
+}

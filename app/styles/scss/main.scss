@@ -1,10 +1,9 @@
 $icon-font-path: '/bower_components/sass-bootstrap/fonts/';
 
 @import '../../bower_components/sass-bootstrap/lib/bootstrap';
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 // @include url('../../bower_components/Bootflat/bootflat/css/bootflat.css');
 
-$font-family-sans-serif:  'Oswald', Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  Helvetica, Arial, sans-serif;
 
 body {
 	background: #f0f0f0;
@@ -27,3 +26,5 @@ ul {
 	padding: 0;
 	list-style: none;
 }
+
+@import '../../scripts/components/charts/timeline/timeline';

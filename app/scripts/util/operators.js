@@ -56,6 +56,10 @@ _define({}, function() {
 			});
 		};
 
+		that.num = function(number) {
+			return parseInt(number, 10);
+		};
+
 		return that;
 	};
 

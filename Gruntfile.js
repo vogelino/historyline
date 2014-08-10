@@ -41,7 +41,10 @@ module.exports = function(grunt) {
 				tasks: ['coffee:test']
 			},
 			stylize: {
-				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+				files: [
+					'<%= yeoman.app %>/styles/{,*/}*.{scss,sass}',
+					'<%= yeoman.app %>/scripts/{,*/}*.{scss,sass}'
+				],
 				tasks: ['compass', 'concat'],
 				options: {
 					livereload: LIVERELOAD_PORT
