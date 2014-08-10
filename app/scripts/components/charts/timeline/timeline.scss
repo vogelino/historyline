@@ -5,9 +5,13 @@
 }
 
 .time-event {
-	border-radius: 3px;
 	fill: #010101;
 	cursor: pointer;
+	transition: fill 200ms ease-out;
+
+	&.hover {
+		fill: red;
+	}
 }
 
 .time-label {

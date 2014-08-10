@@ -202,6 +202,11 @@ _define({
 
 			events.on('mouseenter', function(d) {
 				my.showTooltip(this, d.title);
+				$(this).attr('class', 'time-event hover');
+			});
+
+			events.on('mouseout', function() {
+				$(this).attr('class', 'time-event');
 			});
 		};
 
