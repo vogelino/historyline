@@ -13,6 +13,7 @@ define([
 	// 	trickleSpeed: 100
 	// });
 
+	var LINK_ID = 'LoadingFavicon';
 	var LOADING_LINK = LoadingFavicon.src;
 	var NORMAL_LINK = NormalFavicon.src;
 
@@ -25,20 +26,20 @@ define([
 		var link = document.createElement('link');
 		link.type = 'image/x-icon';
 		link.rel = 'shortcut icon';
+		link.id = LINK_ID;
 		link.href = url;
 		return link;
 	};
 
 	loading.start = function() {
-		loading.activeLink.href = LOADING_LINK;
+		$('#' + LINK_ID).attr('href', LOADING_LINK);
 		NProgress.start();
 	};
 
 	loading.stop = function() {
 		_.delay(function() {
-			loading.activeLink.href = NORMAL_LINK;
+			$('#' + LINK_ID).attr('href', NORMAL_LINK);
 		}, 500);
-		$('head').append(loading.activeLink);
 		NProgress.done();
 	};
 

@@ -1,6 +1,6 @@
 _define({
 	BaseView: 'base/BaseView',
-	Template : 'text!tests/wordpressTest.html',
+	Template : 'text!pages/content/content.html',
 	PostsView: 'components/posts/postsView',
 	PostsModel: 'components/posts/postsModel',
 	Header: 'components/header/header',
@@ -11,10 +11,10 @@ _define({
 
 	var LIVE_REFRESH_DELAY = 10000;
 
-	var wordpressTest = function() {
+	var content = function() {
 		var that = {}, my = {};
 
-		that.name = 'wordpressTest';
+		that.name = 'content';
 		that.instanceId = that.name + m.Moment();
 		that.template = m.Template;
 
@@ -46,9 +46,10 @@ _define({
 		};
 
 		that.onViewReady = function() {
-			that.fetchPosts({
-				liveRefresh: true
-			});
+			// that.fetchPosts({
+			// 	liveRefresh: true
+			// });
+			m.Loading.stop();
 		};
 
 		that.startLiveRefresh = function() {
@@ -123,5 +124,5 @@ _define({
 		return that;
 	};
 
-	return wordpressTest;
+	return content;
 });

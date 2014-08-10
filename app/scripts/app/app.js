@@ -2,7 +2,7 @@ _define({
 	BaseView: '../base/BaseView',
 	Template: 'text!app/app.html',
 	Loading: 'util/loading',
-	WordpressTest: 'tests/wordpressTest',
+	Content: 'components/charts/timeline/timeline',
 	Moment: 'moment',
 	InlineNotification: 'util/inlineNotification/inlineNotification'
 }, function(m) {
@@ -19,7 +19,7 @@ _define({
 			that.on('view_ready', that.onViewReady);
 
 			that.children = {
-				content: new m.WordpressTest(),
+				content: new m.Content(),
 				inlineNotification: new m.InlineNotification()
 			};
 			return that;
