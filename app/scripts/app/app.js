@@ -3,7 +3,8 @@ _define({
 	Template: 'text!app/app.html',
 	Loading: 'util/loading',
 	WordpressTest: 'tests/wordpressTest',
-	Moment: 'moment'
+	Moment: 'moment',
+	InlineNotification: 'util/inlineNotification/inlineNotification'
 }, function(m) {
 	'use strict';
 
@@ -18,7 +19,8 @@ _define({
 			that.on('view_ready', that.onViewReady);
 
 			that.children = {
-				content: new m.WordpressTest()
+				content: new m.WordpressTest(),
+				inlineNotification: new m.InlineNotification()
 			};
 			return that;
 		};

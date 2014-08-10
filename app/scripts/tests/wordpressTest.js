@@ -4,7 +4,6 @@ _define({
 	PostsView: 'components/posts/postsView',
 	PostsModel: 'components/posts/postsModel',
 	Header: 'components/header/header',
-	request: 'util/request',
 	Moment: 'moment',
 	Loading: 'util/loading'
 }, function(m) {
@@ -56,7 +55,7 @@ _define({
 			my.liveRefresh = setTimeout(function() {
 				that.fetchPosts();
 				that.startLiveRefresh();
-			}, 5000);
+			}, LIVE_REFRESH_DELAY);
 		};
 
 		that.stopLiveRefresh = function() {
@@ -68,24 +67,16 @@ _define({
 			that.fetchPosts({
 				liveRefresh: false
 			}).done(function() {
-				var $message = that.$el.find('.refresh-done-message');
-				$message.slideDown();
-				_.delay(function() {
-					$message.slideUp();
-				}, LIVE_REFRESH_DELAY);
 			});
 		};
 
 		that.fetchPosts = function(options) {
 			console.log('fetch.start');
-			var
-				$dfd = $.Deferred(),
-				req = m.request().new('get_recent_posts', {
-					tagSlug: 'test',
-					order: 'DESC'
-				});
+			var $dfd = $.Deferred();
 
-			req.done(function(response) {
+			window.Api.entries({
+				'content_type': '2svEnQffpKYo0we00YEmkg'
+			}).then(function(response) {
 				var posts = [];
 				_.each(response.posts, function(val) {
 					var model,
@@ -104,12 +95,21 @@ _define({
 				});
 				my.postsCollection.set(posts);
 				m.Loading.stop();
+				window.inlineNotif.show({
+					type: 'success',
+					title: 'success',
+					message: 'Api reached successfully'
+				});
 				console.log('fetch.done');
 				$dfd.resolve();
 				if (options && options.liveRefresh) {
 					that.startLiveRefresh();
 				}
-			}).fail(function() {
+			}, function(error) {
+				m.Loading.stop();
+				window.inlineNotif.show({
+					message: error.message
+				});
 				that.stopLiveRefresh();
 				$dfd.reject();
 			});
