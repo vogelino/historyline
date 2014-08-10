@@ -97,55 +97,56 @@ _define({
 
 		my.createChart = function(data) {
 			var
-				events,
-				labels,
-				labelsContainer,
-				lines,
-				labelsArrows,
-				labelsTexts,
-				barHeight = my.options.chart.bar.height,
-				barSpace = my.options.chart.bar.space,
-				borderWidth = my.options.chart.borderWidth,
-				labelsSpace = my.options.chart.labels.space,
-				labelsSeparation = my.options.chart.labels.separation,
 				chartWidth = my.options.chart.width,
 				chartHeight = my.options.chart.height,
-				dataEnv = my.options.view,
 				dataset = my.getDataWithAdaptedUnits(data),
-				columnWidth = o.quo(
-					chartWidth,
-					o.dif(dataEnv.endValue, dataEnv.startValue)
-				),
-				$chart = that.$el.find('.chart-container'),
-				svg = m.d3.select($chart[0]).append('svg');
+				$chart = that.$el.find('.chart-container');
 
-			svg.attr('width', chartWidth)
+			my.chart = m.d3.select($chart[0]).append('svg');
+
+			my.chart.attr('width', chartWidth)
 			   .attr('height', chartHeight);
 
-			var appliedData = svg.selectAll('rect')
-				.data(dataset);
+			var appliedData = my.chart.selectAll('rect')
+					.data(dataset);
 
-			// lines
-			lines = appliedData
+			// rows
+			my.createRows(appliedData);
+
+			// events
+			my.createEvents(appliedData);
+
+			// labels
+			my.createTimeLabels();
+		};
+
+		my.createRows = function(appliedData) {
+			var rows = appliedData
 				.enter()
 				.append('rect')
-				.attr('class', 'horizontal-lines');
+				.attr('class', 'horizontal-rows');
 
-			lines.attr('fill', 'lightgray');
+			rows.attr('fill', 'lightgray');
 
-			lines.attr('width', chartWidth).
-				attr('height', borderWidth).
+			rows.attr('width', my.options.chart.width).
+				attr('height', my.options.chart.borderWidth).
 				attr('y', function(d, index) {
 					index = o.sum(index, 1);
 					return o.sum(
-						o.pro(barHeight, index),
-						o.pro(borderWidth, index),
-						o.pro(barSpace, index),
-						labelsSpace
+						o.pro(my.options.chart.bar.height, index),
+						o.pro(my.options.chart.borderWidth, index),
+						o.pro(my.options.chart.bar.space, index),
+						my.options.chart.labels.space
 					);
 				});
+		};
 
-			// events
+		my.createEvents = function(appliedData) {
+			var
+				events,
+				dataEnv = my.options.view,
+				columnWidth = my.getColumnWidth();
+
 			events = appliedData
 				.enter()
 				.append('rect')
@@ -161,7 +162,7 @@ _define({
 			events.attr('ry', my.options.chart.bar.borderRadius);
 			events.attr('rx', my.options.chart.bar.borderRadius);
 
-			events.attr('height', barHeight);
+			events.attr('height', my.options.chart.bar.height);
 
 			events.attr('x', function(d) {
 				var offsetLeft = o.dif(d.startValue, dataEnv.startValue);
@@ -170,54 +171,49 @@ _define({
 
 			events.attr('y', function(d, index) {
 				return o.sum(
-					o.pro(barHeight, index),
-					o.pro(borderWidth, index),
-					o.pro(barSpace, index),
-					o.quo(barSpace, 2),
-					borderWidth,
-					labelsSpace
+					o.pro(my.options.chart.bar.height, index),
+					o.pro(my.options.chart.borderWidth, index),
+					o.pro(my.options.chart.bar.space, index),
+					o.quo(my.options.chart.bar.space, 2),
+					my.options.chart.borderWidth,
+					my.options.chart.labels.space
 				);
 			});
 
 			events.on('mouseenter', function(d) {
 				my.showTooltip(this, d.title);
 			});
+		};
 
-			// labels
-			svg.append('rect')
-					.attr('width', chartWidth)
-					.attr('height', labelsSpace)
+		my.createTimeLabels = function() {
+			var
+				labels,
+				labelsContainer;
+
+			my.chart.append('rect')
+					.attr('width', my.options.chart.width)
+					.attr('height', my.options.chart.labels.space)
 					.attr('x', 0)
 					.attr('y', 0)
 					.attr('class', 'labels-background');
 
-			labelsContainer = svg.append('g')
-					.attr('width', chartWidth)
-					.attr('height', labelsSpace)
+			labelsContainer = my.chart.append('g')
+					.attr('width', my.options.chart.width)
+					.attr('height', my.options.chart.labels.space)
 					.attr('x', 0)
 					.attr('y', 0)
 					.attr('class', 'labels-container');
 
-			labels = labelsContainer.selectAll('g')
-				.data(my.getXData(dataEnv))
-				.enter()
-				.append('g');
+			labels = my.createLabels(labelsContainer);
+			my.createLabelsTexts(labels);
+			my.createLabelsArrows(labels);
+		};
 
-			labelsTexts = labels.append('text');
-			labelsArrows = labels.append('polygon')
-				.attr('class', 'labels-arrows');
+		my.createLabelsTexts = function(labels) {
+			var labelsTexts = labels.append('text');
 
 			labelsTexts.text(function(d) {
 				return d;
-			});
-
-			labels.attr('x', function(d, index) {
-				return o.pro(index, columnWidth);
-			});
-
-			labels.attr('y', function() {
-				var semiHeight = o.quo(labelsSpace, 2);
-				return o.sum(semiHeight, o.quo($(this).height(), 4));
 			});
 
 			labelsTexts.attr('x', function() {
@@ -225,6 +221,41 @@ _define({
 			});
 			labelsTexts.attr('y', function() {
 				return o.num($(this.parentNode).attr('y'));
+			});
+			return labelsTexts;
+		};
+
+		my.createLabelsArrows = function(labels) {
+			var labelsArrows = labels.append('polygon')
+				.attr('class', 'labels-arrows')
+				.attr('points', function() {
+					var
+						parentX = o.num($(this.parentNode).attr('x')),
+						parentY = o.num($(this.parentNode).attr('y')),
+						parentHeight = o.num($(this.parentNode).height()),
+						point1Y = o.sum(parentHeight, parentY),
+						point1 = parentX + ',' + o.sum(point1Y, 10),
+						point2 = o.dif(parentX, 5) + ',' + o.sum(point1Y, 15),
+						point3 = o.sum(parentX, 5) + ',' + o.sum(point1Y, 15);
+
+					return point1 + ' ' + point2 + ' ' + point3;
+				});
+			return labelsArrows;
+		};
+
+		my.createLabels = function(labelsContainer) {
+			var labels = labelsContainer.selectAll('g')
+					.data(my.getXData(my.options.view))
+					.enter()
+					.append('g');
+
+			labels.attr('x', function(d, index) {
+				return o.pro(index, my.getColumnWidth());
+			});
+
+			labels.attr('y', function() {
+				var semiHeight = o.quo(my.options.chart.labels.space, 2);
+				return o.sum(semiHeight, o.quo($(this).height(), 4));
 			});
 
 			labels.attr('class', function() {
@@ -234,12 +265,15 @@ _define({
 					prevWidth = $prev.width(),
 					prevOffsetLeft = o.num($prev.attr('x')),
 					prevOffsetRight = o.sum(prevOffsetLeft, prevWidth),
-					offsetWithSpace = o.sum(prevOffsetRight, labelsSeparation),
+					offsetWithSpace = o.sum(
+						prevOffsetRight,
+						my.options.chart.labels.separation
+					),
 					thisOffsetLeft = o.num($(this).attr('x')),
 					thisOffsetRight = thisOffsetLeft + $(this).width();
 
 				if ((thisOffsetLeft === 0 || thisOffsetLeft >= offsetWithSpace) &&
-					thisOffsetRight <= chartWidth) {
+					thisOffsetRight <= my.options.chart.width) {
 					return baseClass;
 				}
 				else {
@@ -247,18 +281,7 @@ _define({
 				}
 			});
 
-			labelsArrows.attr('points', function() {
-				var
-					parentX = o.num($(this.parentNode).attr('x')),
-					parentY = o.num($(this.parentNode).attr('y')),
-					parentHeight = o.num($(this.parentNode).height()),
-					point1Y = o.sum(parentHeight, parentY),
-					point1 = parentX + ',' + o.sum(point1Y, 10),
-					point2 = o.dif(parentX, 5) + ',' + o.sum(point1Y, 15),
-					point3 = o.sum(parentX, 5) + ',' + o.sum(point1Y, 15);
-
-				return point1 + ' ' + point2 + ' ' + point3;
-			});
+			return labels;
 		};
 
 		my.getPreviousVisibleLabel = function(label) {
@@ -320,6 +343,16 @@ _define({
 			});
 
 			return adaptedData;
+		};
+
+		my.getColumnWidth = function() {
+			return o.quo(
+					my.options.chart.width,
+					o.dif(
+						my.options.view.endValue,
+						my.options.view.startValue
+					)
+				);
 		};
 
 		my.showTooltip = function(elem, data) {
