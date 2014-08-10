@@ -17,6 +17,19 @@
 	fill: #fff;
 }
 
+.horizontal-rows {
+	fill: transparent;
+	border-bottom: 1px solid gray;
+
+	&:nth-child(odd) {
+		fill: darken(#fff, 10);
+	}
+}
+
+.horizontal-rows-lines {
+	fill: darken(#fff, 20);
+}
+
 .labels-arrows {
 	stroke-width: 0;
 }

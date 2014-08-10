@@ -126,19 +126,39 @@ _define({
 				.append('rect')
 				.attr('class', 'horizontal-rows');
 
-			rows.attr('fill', 'lightgray');
-
-			rows.attr('width', my.options.chart.width).
-				attr('height', my.options.chart.borderWidth).
-				attr('y', function(d, index) {
-					index = o.sum(index, 1);
+			rows.attr('width', my.options.chart.width)
+				.attr('height', function() {
 					return o.sum(
-						o.pro(my.options.chart.bar.height, index),
-						o.pro(my.options.chart.borderWidth, index),
-						o.pro(my.options.chart.bar.space, index),
-						my.options.chart.labels.space
+						my.options.chart.bar.height,
+						my.options.chart.bar.space,
+						my.options.chart.borderWidth,
+						my.options.chart.borderWidth
 					);
-				});
+				}).attr('y', my.getRowHeight);
+
+			var lines = appliedData
+					.enter()
+					.append('rect')
+					.attr('class', 'horizontal-rows-lines');
+
+			lines.attr('width', my.options.chart.width)
+				.attr('height', my.options.chart.borderWidth)
+				.attr('y', my.getRowHeight);
+
+			return {
+				rows: rows,
+				lines: lines
+			};
+		};
+
+		my.getRowHeight = function(d, index) {
+			index = o.sum(index, 1);
+			return o.sum(
+				o.pro(my.options.chart.bar.height, index),
+				o.pro(my.options.chart.borderWidth, index),
+				o.pro(my.options.chart.bar.space, index),
+				my.options.chart.labels.space
+			);
 		};
 
 		my.createEvents = function(appliedData) {
