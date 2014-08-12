@@ -9,8 +9,8 @@
 	cursor: pointer;
 	transition: fill 200ms ease-out;
 
-	&.hover {
-		fill: red;
+	&:hover {
+		fill: gray;
 	}
 }
 
@@ -36,8 +36,16 @@
 
 .labels-arrows {
 	stroke-width: 0;
+	fill: lighten(#000, 30);
 }
 
 .labels-container {
 	fill: #000;
+}
+
+.timeline-tooltip {
+	rect,
+	polygon {
+		fill: lightgray
+	}
 }

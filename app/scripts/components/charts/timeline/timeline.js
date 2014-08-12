@@ -76,6 +76,12 @@ _define({
 				labels: {
 					space: 30,
 					separation: 50
+				},
+				tooltip: {
+					width: 200,
+					height: 50,
+					arrowSize: 10,
+					padding: 20,
 				}
 			},
 			view: {
@@ -118,6 +124,9 @@ _define({
 
 			// labels
 			my.createTimeLabels();
+
+			// Tooltip
+			my.createTooltip();
 		};
 
 		my.createRows = function(appliedData) {
@@ -202,11 +211,10 @@ _define({
 
 			events.on('mouseenter', function(d) {
 				my.showTooltip(this, d.title);
-				$(this).attr('class', 'time-event hover');
 			});
 
-			events.on('mouseout', function() {
-				$(this).attr('class', 'time-event');
+			events.on('mouseleave', function() {
+				my.hideTooltip();
 			});
 		};
 
@@ -393,8 +401,47 @@ _define({
 				);
 		};
 
-		my.showTooltip = function(elem, data) {
+		my.createTooltip = function() {
+			my.tooltip = my.chart.append('svg')
+					.attr('class', 'timeline-tooltip')
+					.style('opacity', 0);
 
+			my.tooltip.rect = my.tooltip.append('rect')
+				.attr('width', my.options.chart.tooltip.width)
+				.attr('height', my.options.chart.tooltip.height)
+				.attr('y', my.options.chart.tooltip.arrowSize);
+
+			my.tooltip.arrow = my.tooltip.append('polygon')
+				.attr('points', '0,0 0,' +
+					my.options.chart.tooltip.arrowSize + ' ' +
+					my.options.chart.tooltip.arrowSize + ',' +
+					my.options.chart.tooltip.arrowSize);
+
+			my.tooltip.text = my.tooltip.append('text')
+				.attr('x', my.options.chart.tooltip.padding)
+				.attr('y', o.sum(
+					my.options.chart.tooltip.arrowSize,
+					my.options.chart.tooltip.arrowSize,
+					my.options.chart.tooltip.padding
+				));
+		};
+
+		my.showTooltip = function(elem, data) {
+			var
+				x = o.num($(elem).attr('x')),
+				barHeight = o.num($(elem).attr('height')),
+				y = o.num($(elem).attr('y'));
+
+			my.tooltip.text.text(data);
+
+			my.tooltip
+				.style('opacity', 1)
+				.attr('x', x)
+				.attr('y', o.sum(barHeight, y));
+		};
+
+		my.hideTooltip = function() {
+			my.tooltip.style('opacity', 0);
 		};
 
 		that.setData = function(data) {
