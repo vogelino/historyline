@@ -96,17 +96,14 @@ _define({
 			return that;
 		};
 
-		that.onViewReady = function() {
-			my.createChart(that.data);
-			my.createChart(that.dummyData);
-		};
-
 		my.createChart = function(data) {
 			var
 				chartWidth = my.options.chart.width,
 				chartHeight = my.options.chart.height,
 				dataset = my.getDataWithAdaptedUnits(data),
 				$chart = that.$el.find('.chart-container');
+
+			$chart.html('');
 
 			my.chart = m.d3.select($chart[0]).append('svg');
 
@@ -447,6 +444,13 @@ _define({
 		that.setData = function(data) {
 			that.data = data;
 			my.createChart(that.data);
+
+			var debouncedResize = _.debounce(function() {
+				my.options.chart.width = o.dif($(window).width(), 20);
+				my.options.chart.height = o.dif($(window).outerHeight(), 20);
+				my.createChart(that.data);
+			}, 200);
+			$(window).resize(debouncedResize);
 		};
 
 		var inherited = m.BaseView();
