@@ -70,18 +70,18 @@ _define({
 					height: 20,
 					space: 4,
 					borderRadius: 2,
-					minWidth: 5
+					minWidth: 10
 				},
 				borderWidth: 1,
 				labels: {
 					space: 30,
-					separation: 50
+					separation: 50,
+					arrowSize: 5
 				},
 				tooltip: {
 					width: 200,
 					height: 50,
-					arrowSize: 10,
-					padding: 20,
+					arrowSize: 10
 				}
 			},
 			view: {
@@ -158,7 +158,6 @@ _define({
 		};
 
 		my.getRowHeight = function(d, index) {
-			index = o.sum(index, 1);
 			return o.sum(
 				o.pro(my.options.chart.bar.height, index),
 				o.pro(my.options.chart.borderWidth, index),
@@ -220,7 +219,7 @@ _define({
 				labels,
 				labelsContainer;
 
-			my.chart.append('rect')
+			labelsContainer = my.chart.append('rect')
 					.attr('width', my.options.chart.width)
 					.attr('height', my.options.chart.labels.space)
 					.attr('x', 0)
@@ -257,20 +256,47 @@ _define({
 
 		my.createLabelsArrows = function(labels) {
 			var labelsArrows = labels.append('polygon')
-				.attr('class', 'labels-arrows')
 				.attr('points', function() {
 					var
 						parentX = o.num($(this.parentNode).attr('x')),
 						parentY = o.num($(this.parentNode).attr('y')),
 						parentHeight = o.num($(this.parentNode).height()),
-						point1Y = o.sum(parentHeight, parentY),
-						point1 = parentX + ',' + o.sum(point1Y, 10),
-						point2 = o.dif(parentX, 5) + ',' + o.sum(point1Y, 15),
-						point3 = o.sum(parentX, 5) + ',' + o.sum(point1Y, 15);
+						aS = my.options.chart.labels.arrowSize,
+						aS3 = o.pro(aS, 3),
+						aS2 = o.pro(aS, 2),
+						p1Y = o.sum(parentHeight, parentY),
+						p1X = o.sum(parentX, aS),
+						point1 = p1X + ',' + o.sum(p1Y, aS2),
+						point2 = parentX + ',' + o.sum(p1Y, aS3),
+						point3 = o.sum(p1X, aS) + ',' + o.sum(p1Y, aS3);
 
 					return point1 + ' ' + point2 + ' ' + point3;
+				})
+				.attr('class', function() {
+					var
+						points = $(this).attr('points').split(' '),
+						pointLeft = points[1],
+						pointLeftPos = pointLeft.split(','),
+						pointLeftX = o.num(pointLeftPos[0]),
+						pointRight = points[2],
+						pointRightPos = pointRight.split(','),
+						pointRightX = o.num(pointRightPos[0]),
+						maxPosX = my.options.chart.width;
+
+					if (pointLeftX < 0 || pointRightX > maxPosX) {
+						return 'labels-arrows hidden';
+					}
+					return 'labels-arrows';
 				});
 			return labelsArrows;
+		};
+
+		my.getGroupPos = function(elem) {
+			var g = m.d3.select(elem);
+			return {
+				x: m.d3.transform(g.attr('transform')).translate[0],
+				y: m.d3.transform(g.attr('transform')).translate[0]
+			};
 		};
 
 		my.createLabels = function(labelsContainer) {
@@ -280,7 +306,8 @@ _define({
 					.append('g');
 
 			labels.attr('x', function(d, index) {
-				return o.pro(index, my.getColumnWidth());
+				return o.pro(index, my.getColumnWidth()) ||
+					my.options.chart.labels.arrowSize;
 			});
 
 			labels.attr('y', function() {
@@ -302,7 +329,8 @@ _define({
 					thisOffsetLeft = o.num($(this).attr('x')),
 					thisOffsetRight = thisOffsetLeft + $(this).width();
 
-				if ((thisOffsetLeft === 0 || thisOffsetLeft >= offsetWithSpace) &&
+				if ((thisOffsetLeft === my.options.chart.labels.arrowSize ||
+						thisOffsetLeft >= offsetWithSpace) &&
 					thisOffsetRight <= my.options.chart.width) {
 					return baseClass;
 				}
@@ -330,7 +358,7 @@ _define({
 				newData = [],
 				length = o.dif(dataEnv.endValue, dataEnv.startValue);
 			newData.push(dataEnv.startValue);
-			for (var i = 0; i < length; i++) {
+			for (var i = 1; i < length; i++) {
 				newData.push(dataEnv.startValue + i);
 			}
 			return newData;
@@ -368,8 +396,8 @@ _define({
 					goesEarlier = true;
 				}
 
-				startValue = parseInt(startValue, 10);
-				endValue = parseInt(endValue, 10);
+				startValue = o.num(startValue);
+				endValue = o.num(endValue);
 				duration = endValue - startValue;
 
 				if (startValue >= dataEnv.startValue &&
@@ -415,12 +443,23 @@ _define({
 					my.options.chart.tooltip.arrowSize);
 
 			my.tooltip.text = my.tooltip.append('text')
-				.attr('x', my.options.chart.tooltip.padding)
-				.attr('y', o.sum(
-					my.options.chart.tooltip.arrowSize,
-					my.options.chart.tooltip.arrowSize,
-					my.options.chart.tooltip.padding
-				));
+				.text('dummyText')
+				.attr('x', my.getTooltipTextXPosition)
+				.attr('y', my.getTooltipTextYPosition);
+		};
+
+		my.getTooltipTextYPosition = function() {
+			var
+				tooltipHalf = o.quo(my.options.chart.tooltip.height, 2),
+				thisHalf;
+
+			tooltipHalf = o.sum(tooltipHalf, my.options.chart.tooltip.arrowSize);
+			thisHalf = o.quo(o.num($(this).height()), 4);
+			return o.sum(tooltipHalf, thisHalf);
+		};
+
+		my.getTooltipTextXPosition = function() {
+			return o.quo(my.options.chart.tooltip.height, 2);
 		};
 
 		my.showTooltip = function(elem, data) {

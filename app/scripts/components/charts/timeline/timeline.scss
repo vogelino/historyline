@@ -5,12 +5,12 @@
 }
 
 .time-event {
-	fill: #010101;
+	fill: #16a085;
 	cursor: pointer;
 	transition: fill 200ms ease-out;
 
 	&:hover {
-		fill: gray;
+		fill: #1abc9c;
 	}
 }
 
@@ -18,16 +18,19 @@
 	font-size: 12px;
 	line-height: 12px;
 	background: #000;
-	fill: #fff;
+	fill: gray;
 }
 
 .horizontal-rows {
 	fill: transparent;
-	border-bottom: 1px solid gray;
 
-	&:nth-child(odd) {
-		fill: darken(#fff, 10);
+	&:nth-child(even) {
+		fill: darken(#fff, 8);
 	}
+}
+
+.labels-background {
+	fill: transparent;
 }
 
 .horizontal-rows-lines {
@@ -36,7 +39,7 @@
 
 .labels-arrows {
 	stroke-width: 0;
-	fill: lighten(#000, 30);
+	fill: lightgray;
 }
 
 .labels-container {
