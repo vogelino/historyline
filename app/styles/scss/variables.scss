@@ -1,0 +1,37 @@
+// Brand colors
+// -------------------------
+
+$brand-primary: 		#2ecc71;
+$brand-success: 		lighten(#2ecc71, 5%);
+$brand-danger:          tomato;
+
+// Grays
+// -------------------------
+
+$gray:                   desaturate($brand-primary, 70%);
+$gray-darker:            darken($gray, 20%);
+$gray-dark:              darken($gray, 10%);
+$gray-light:             lighten($gray, 35%);
+$gray-lighter:           lighten($gray, 48%);
+
+// Scaffolding
+// -------------------------
+
+$body-bg: lighten($gray-lighter, 5%);
+
+// Links
+// -------------------------
+
+$link-color:            $brand-primary;
+$link-hover-color:      darken($link-color, 15%);
+
+// Navbar
+// -------------------------
+
+// Basics of a navbar
+$navbar-default-bg: 	$body-bg;
+
+// Form states and alerts
+// -------------------------
+$state-success-text: 	$brand-success;
+$state-success-bg: 		desaturate(lighten($state-success-text, 44%), 20%);

@@ -1,0 +1,20 @@
+.navbar-default {
+	border-bottom-width: 3px;
+	.navbar-nav {
+		a {
+			@include box-shadow(0 0 0 0 darken($navbar-default-bg, 6.5%));
+
+			&:hover {
+				@include box-shadow(0 3px 0 0 darken($navbar-default-bg, 15%));
+			}
+		}
+		.active {
+			a,
+			a:hover,
+			a:focus {
+				background: none;
+				@include box-shadow(0 3px 0 0 $link-color);
+			}
+		}
+	}
+}

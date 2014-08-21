@@ -64,8 +64,8 @@ _define({
 
 		my.options = {
 			chart: {
-				width: o.dif($(window).width(), 20),
-				height: o.dif($(window).outerHeight(), 70),
+				width: 500,
+				height: 500,
 				bar: {
 					height: 20,
 					space: 4,
@@ -98,12 +98,16 @@ _define({
 
 		my.createChart = function(data) {
 			var
-				chartWidth = my.options.chart.width,
-				chartHeight = my.options.chart.height,
+				chartWidth,
+				chartHeight,
 				dataset = my.getDataWithAdaptedUnits(data),
 				$chart = that.$el.find('.chart-container');
 
 			$chart.html('');
+
+			my.options.chart.width = $chart.innerWidth();
+			chartWidth = my.options.chart.width;
+			chartHeight = my.options.chart.height;
 
 			my.chart = m.d3.select($chart[0]).append('svg');
 

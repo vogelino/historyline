@@ -40,15 +40,12 @@ module.exports = function(grunt) {
 				files: ['test/spec/{,*/}*.coffee'],
 				tasks: ['coffee:test']
 			},
-			stylize: {
+			sass: {
 				files: [
 					'<%= yeoman.app %>/styles/{,*/}*.{scss,sass}',
 					'<%= yeoman.app %>/scripts/{,*/}*.{scss,sass}'
 				],
-				tasks: ['compass', 'concat'],
-				options: {
-					livereload: LIVERELOAD_PORT
-				}
+				tasks: ['compass', 'concat']
 			},
 			todist: {
 				files: [

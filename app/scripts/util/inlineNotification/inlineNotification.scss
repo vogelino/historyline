@@ -1,0 +1,8 @@
+#inlineNotification {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: $zindex-navbar-fixed;
+	padding: ($alert-padding - 4) $alert-padding ($alert-padding - 4) $alert-padding;
+	margin: 3px;
+}

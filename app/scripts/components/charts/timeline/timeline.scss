@@ -1,23 +1,23 @@
 .timeline-chart {
+	width: 100%;
 	padding: 10px;
 	float: left;
 	box-sizing: border-box;
 }
 
 .time-event {
-	fill: #16a085;
+	fill: $link-color;
 	cursor: pointer;
 	transition: fill 200ms ease-out;
 
 	&:hover {
-		fill: #1abc9c;
+		fill: $link-hover-color;
 	}
 }
 
 .time-label {
 	font-size: 12px;
 	line-height: 12px;
-	background: #000;
 	fill: gray;
 }
 
@@ -25,7 +25,7 @@
 	fill: transparent;
 
 	&:nth-child(even) {
-		fill: darken(#fff, 8);
+		fill: $gray-lighter;
 	}
 }
 
@@ -34,12 +34,12 @@
 }
 
 .horizontal-rows-lines {
-	fill: darken(#fff, 20);
+	fill: $gray-light;
 }
 
 .labels-arrows {
 	stroke-width: 0;
-	fill: lightgray;
+	fill: $gray-light;
 }
 
 .labels-container {
@@ -49,6 +49,6 @@
 .timeline-tooltip {
 	rect,
 	polygon {
-		fill: lightgray
+		fill: $gray-lighter
 	}
 }

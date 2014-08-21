@@ -1,20 +1,12 @@
-$icon-font-path: '/bower_components/sass-bootstrap/fonts/';
 
+@import 'variables';
 @import '../../bower_components/sass-bootstrap/lib/bootstrap';
-// @include url('../../bower_components/Bootflat/bootflat/css/bootflat.css');
 
-$font-family-sans-serif:  Helvetica, Arial, sans-serif;
-
+$body-padding: 20px;
 body {
-	background: #f0f0f0;
 	margin: 0;
-	padding: 50px 0 0 0;
-}
-
-.navbar-inverse .navbar-brand {
-	font-family: $font-family-sans-serif;
-	letter-spacing: 0.1em;
-	font-weight: 400;
+	padding: ($navbar-height + $body-padding) $body-padding $body-padding $body-padding;
+	@include box-sizing(border-box);
 }
 
 img {
@@ -27,4 +19,22 @@ ul {
 	list-style: none;
 }
 
+$progress-color: $brand-primary;
+#nprogress {
+	.bar {
+		background: $progress-color;
+	}
+
+	.peg {
+		@include box-shadow(0 0 10px $progress-color, 0 0 5px $progress-color);
+	}
+
+	.spinner-icon {	
+		border-top-color: $progress-color;
+		border-left-color: $progress-color;
+	}
+}
+
+@import '../../scripts/components/header/header';
 @import '../../scripts/components/charts/timeline/timeline';
+@import '../../scripts/util/inlineNotification/inlineNotification';
