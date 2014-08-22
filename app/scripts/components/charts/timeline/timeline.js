@@ -8,8 +8,6 @@ _define({
 }, function(m) {
 	'use strict';
 
-	var DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
-
 	var timeline = function() {
 		var that = {}, my = {};
 
@@ -39,11 +37,6 @@ _define({
 					height: 50,
 					arrowSize: 10
 				}
-			},
-			view: {
-				unit: 'D',
-				startValue: '2000-01-01 00:00:00',
-				endValue: '2000-12-31 23:59:59'
 			}
 		};
 
@@ -60,23 +53,21 @@ _define({
 				var
 					chartWidth,
 					chartHeight,
-					data = model.get('data'),
-					dataset = my.getDataWithAdaptedUnits(data),
+					data   = model.get('data'),
 					$chart = that.$el.find('.chart-container');
 
 				$chart.html('');
 
-				my.options.chart.width = $chart.innerWidth();
-				chartWidth = my.options.chart.width;
-				chartHeight = my.options.chart.height;
+				my.options.chart.width	= $chart.innerWidth();
+				chartWidth				= my.options.chart.width;
+				chartHeight				= my.options.chart.height;
 
 				my.chart = m.d3.select($chart[0]).append('svg');
 
 				my.chart.attr('width', chartWidth)
-				   .attr('height', chartHeight);
+						.attr('height', chartHeight);
 
-				var appliedData = my.chart.selectAll('rect')
-						.data(dataset);
+				var appliedData = my.chart.selectAll('rect').data(data);
 
 				// rows
 				my.createRows(appliedData);
@@ -135,8 +126,9 @@ _define({
 		my.createEvents = function(appliedData) {
 			var
 				events,
-				dataEnv = my.options.view,
-				columnWidth = my.getColumnWidth();
+				startViewValue = that.getModel().get('rangeStart'),
+				unit = that.getModel().get('unit'),
+				columnWidth = my.getColumnWidthByUnit(unit);
 
 			events = appliedData
 				.enter()
@@ -146,7 +138,7 @@ _define({
 			events.attr('width', function(d) {
 				var
 					minWidth = my.options.chart.bar.minWidth,
-					width = Math.floor(o.pro(d.duration.days(), columnWidth));
+					width = Math.floor(o.pro(d.duration.as(unit), columnWidth));
 				return width >= minWidth ? width : minWidth;
 			});
 
@@ -156,7 +148,9 @@ _define({
 			events.attr('height', my.options.chart.bar.height);
 
 			events.attr('x', function(d) {
-				var offsetLeft = o.dif(d.startValue, dataEnv.startValue);
+				var
+					valueDuration = o.dif(d.startValue.valueOf(), startViewValue.valueOf()),
+					offsetLeft = m.Moment.duration(valueDuration).as(unit);
 				return Math.floor(o.pro(offsetLeft, columnWidth));
 			});
 
@@ -171,11 +165,11 @@ _define({
 				);
 			});
 
-			events.on('mouseenter', function(d) {
+			events.on('mouseover', function(d) {
 				my.showTooltip(this, d.title);
 			});
 
-			events.on('mouseleave', function() {
+			events.on('mouseout', function() {
 				my.hideTooltip();
 			});
 		};
@@ -267,12 +261,15 @@ _define({
 
 		my.createLabels = function(labelsContainer) {
 			var labels = labelsContainer.selectAll('g')
-					.data(my.getXData(my.options.view))
+					.data(my.getXData())
 					.enter()
 					.append('g');
 
 			labels.attr('x', function(d, index) {
-				return o.pro(index, my.getColumnWidth()) ||
+				var
+					duration = that.getModel().get('rangeDuration'),
+					unitObject = my.getUnitObjectForDuration(duration);
+				return o.pro(index, my.getColumnWidthByUnit(unitObject.unit)) ||
 					my.options.chart.labels.arrowSize;
 			});
 
@@ -319,76 +316,61 @@ _define({
 			return label;
 		};
 
-		my.getXData = function(dataEnv) {
+		my.getXData = function() {
 			var
 				newData = [],
-				length = o.dif(dataEnv.endValue, dataEnv.startValue);
-			newData.push(dataEnv.startValue);
-			for (var i = 1; i < length; i++) {
-				newData.push(dataEnv.startValue + i);
+				duration = that.getModel().get('rangeDuration'),
+				unitObject = my.getUnitObjectForDuration(duration),
+				length = Math.floor(duration.as(unitObject.unit));
+
+			for (var i = 0; i < length; i++) {
+				var label;
+				if (unitObject.unit === 'M') {
+					label = m.Moment.months(i);
+				}
+				else {
+					label = o.sum(i, 1).toString();
+					label = label.length === 1 ? '0' + label : label;
+					label = m.Moment(label, unitObject.unit).
+						format(unitObject.format);
+				}
+				newData.push(label);
 			}
 			return newData;
 		};
 
-		my.getDataWithAdaptedUnits = function(data) {
+		my.getUnitObjectForDuration = function(duration) {
 			var
-				dataEnv = my.options.view,
-				adaptedData = [];
+				unit	= 'y',
+				format	= 'YYYY',
+				years	= Math.floor(duration.asYears()),
+				months	= Math.floor(duration.asMonths()),
+				days	= Math.floor(duration.asDays());
 
-			_.each(data, function(d) {
-				var
-					startValue,
-					endValue,
-					duration,
-					goesLater = false,
-					goesEarlier = false,
-					now = m.Moment().valueOf();
+			if (years <= 1) {
+				unit = 'M';
+				format = 'MMMM';
 
-				dataEnv.startValue = m.Moment(dataEnv.startValue, DATE_FORMAT).valueOf();
-				dataEnv.endValue = m.Moment(dataEnv.endValue, DATE_FORMAT).valueOf();
-				dataEnv.duration = m.Moment.duration(dataEnv.endValue - dataEnv.startValue);
-				if (_.isUndefined(d.endDate) || d.endDate > dataEnv.endValue) {
-					endValue = now;
-					if (d.endDate > endValue) {
-						goesLater = true;
+				if (months <= 1) {
+					unit = 'd';
+					format = 'D MMMM';
+
+					if (days <= 1) {
+						unit = 'h';
+						format = 'Ha';
 					}
 				}
-				else {
-					endValue = m.Moment(d.endDate, DATE_FORMAT).valueOf();
-				}
-
-				startValue = m.Moment(d.startDate, DATE_FORMAT).valueOf();
-
-				if (startValue < dataEnv.startValue) {
-					startValue = dataEnv.startValue;
-					goesEarlier = true;
-				}
-
-				duration = m.Moment.duration(endValue - startValue);
-
-				if (startValue >= dataEnv.startValue &&
-					endValue <= dataEnv.endValue) {
-					adaptedData.push({
-						title: d.title,
-						startValue: startValue,
-						endValue: endValue,
-						duration: duration,
-						goesLater: goesLater,
-						goesEarlier: goesEarlier
-					});
-				}
-			});
-
-			return adaptedData;
+			}
+			return {
+				unit: unit,
+				fromat: format
+			};
 		};
 
-		my.getColumnWidth = function() {
+		my.getColumnWidthByUnit = function(unit) {
 			return o.quo(
 					my.options.chart.width,
-					o.dif(
-						my.options.view.endValue,
-						my.options.view.startValue
-					)
+					that.getModel().get('rangeDuration').as(unit)
 				);
 		};
 
@@ -418,7 +400,6 @@ _define({
 			var
 				tooltipHalf = o.quo(my.options.chart.tooltip.height, 2),
 				thisHalf;
-
 			tooltipHalf = o.sum(tooltipHalf, my.options.chart.tooltip.arrowSize);
 			thisHalf = o.quo(o.num($(this).height()), 4);
 			return o.sum(tooltipHalf, thisHalf);

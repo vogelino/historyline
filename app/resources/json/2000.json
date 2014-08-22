@@ -21,7 +21,7 @@
 {
 	"title": "Hijackers seize Afghan plane; release hostages in Stansted, England",
 	"startDate": "2000-02-6 00:00:00",
-	"--endDate": "2000-02-13 00:00:00"
+	"endDate": "2000-02-13 00:00:00"
 },
 {
 	"title": "Britain ends self-rule in Northern Ireland after Irish Republican Army misses disarmament deadline",
@@ -216,7 +216,7 @@
 {
 	"title": "U.S. presidential election closest in decades; Bush's slim lead in Florida leads to automatic recount in that state",
 	"startDate": "2000-11-7 00:00:00",
-	"--endDate": "2000-11-9 00:00:00"
+	"endDate": "2000-11-9 00:00:00"
 },
 {
 	"title": "Republicans file federal suit to block manual recount of Florida presidential election ballots sought by Democrats",
