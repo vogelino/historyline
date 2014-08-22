@@ -19,12 +19,12 @@ _define({
 		my.options = {
 			chart: {
 				width: 500,
-				height: 500,
+				height: 670,
 				bar: {
 					height: 20,
 					space: 4,
 					borderRadius: 2,
-					minWidth: 10
+					minWidth: 5
 				},
 				borderWidth: 1,
 				labels: {
@@ -54,18 +54,25 @@ _define({
 					chartWidth,
 					chartHeight,
 					data   = model.get('data'),
-					$chart = that.$el.find('.chart-container');
+					$chart = that.$el.find('.chart-container'),
+					$chartContent = $('<div class="chart-content-wrapper" />');
 
 				$chart.html('');
+				$chart.height(my.options.chart.height);
 
 				my.options.chart.width	= $chart.innerWidth();
 				chartWidth				= my.options.chart.width;
 				chartHeight				= my.options.chart.height;
+				$chartContent.height(o.dif(chartHeight, my.options.chart.labels.space));
 
-				my.chart = m.d3.select($chart[0]).append('svg');
+				my.labels = m.d3.select($chart.get(0)).append('svg');
+				$chart.append($chartContent);
+				my.chart = m.d3.select($chartContent.get(0)).append('svg');
 
-				my.chart.attr('width', chartWidth)
-						.attr('height', chartHeight);
+				my.chart.attr('class', 'chart-content')
+						.attr('width', chartWidth);
+				my.labels.attr('class', 'chart-labels')
+						 .attr('width', chartWidth);
 
 				var appliedData = my.chart.selectAll('rect').data(data);
 
@@ -97,7 +104,7 @@ _define({
 						my.options.chart.borderWidth,
 						my.options.chart.borderWidth
 					);
-				}).attr('y', my.getRowHeight);
+				}).attr('y', my.getRowY);
 
 			var lines = appliedData
 					.enter()
@@ -106,7 +113,14 @@ _define({
 
 			lines.attr('width', my.options.chart.width)
 				.attr('height', my.options.chart.borderWidth)
-				.attr('y', my.getRowHeight);
+				.attr('y', my.getRowY);
+
+			my.chart.attr('height', function() {
+				return o.sum(
+					my.getRowY(null, rows[0].length),
+					my.getRowY(null, 1)
+				);
+			});
 
 			return {
 				rows: rows,
@@ -114,12 +128,11 @@ _define({
 			};
 		};
 
-		my.getRowHeight = function(d, index) {
+		my.getRowY = function(d, index) {
 			return o.sum(
 				o.pro(my.options.chart.bar.height, index),
 				o.pro(my.options.chart.borderWidth, index),
-				o.pro(my.options.chart.bar.space, index),
-				my.options.chart.labels.space
+				o.pro(my.options.chart.bar.space, index)
 			);
 		};
 
@@ -160,8 +173,7 @@ _define({
 					o.pro(my.options.chart.borderWidth, index),
 					o.pro(my.options.chart.bar.space, index),
 					o.quo(my.options.chart.bar.space, 2),
-					my.options.chart.borderWidth,
-					my.options.chart.labels.space
+					my.options.chart.borderWidth
 				);
 			});
 
@@ -179,14 +191,16 @@ _define({
 				labels,
 				labelsContainer;
 
-			labelsContainer = my.chart.append('rect')
+			my.labels.attr('height', my.options.chart.labels.space);
+
+			labelsContainer = my.labels.append('rect')
 					.attr('width', my.options.chart.width)
 					.attr('height', my.options.chart.labels.space)
 					.attr('x', 0)
 					.attr('y', 0)
 					.attr('class', 'labels-background');
 
-			labelsContainer = my.chart.append('g')
+			labelsContainer = my.labels.append('g')
 					.attr('width', my.options.chart.width)
 					.attr('height', my.options.chart.labels.space)
 					.attr('x', 0)
@@ -326,7 +340,11 @@ _define({
 			for (var i = 0; i < length; i++) {
 				var label;
 				if (unitObject.unit === 'M') {
-					label = m.Moment.months(i);
+					var
+						chartWidth = my.options.chart.width,
+						maxWidth = 840;
+					label = chartWidth >= maxWidth ?
+						m.Moment.months(i) : m.Moment.monthsShort(i);
 				}
 				else {
 					label = o.sum(i, 1).toString();

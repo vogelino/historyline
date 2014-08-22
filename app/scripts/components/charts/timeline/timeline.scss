@@ -3,6 +3,23 @@
 	padding: 10px;
 	float: left;
 	box-sizing: border-box;
+
+	.chart-container {
+		.chart-labels {
+			border-bottom: 1px solid $gray-light;
+			float: left;
+		}
+
+		.chart-content-wrapper {
+			overflow: scroll;
+			float: left;
+
+			.chart-content {
+				float: left;
+				margin-top: -1px;
+			}
+		}
+	}
 }
 
 .time-event {
@@ -43,12 +60,16 @@
 }
 
 .labels-container {
-	fill: #000;
+	fill: #fff;
 }
 
 .timeline-tooltip {
 	rect,
 	polygon {
-		fill: $gray-lighter
+		fill: $link-hover-color
+	}
+
+	rect {
+		@include box-shadow(0 5px 10px 3px #000);
 	}
 }
