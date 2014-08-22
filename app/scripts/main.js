@@ -33,6 +33,7 @@ require.config({
 		contentful: '../bower_components//contentful/dist/contentful.min',
 		image: '../bower_components/requirejs-plugins/src/image',
 		text: '../bower_components/requirejs-text/text',
+		json: '../bower_components/requirejs-plugins/src/json',
 		d3: '../bower_components/d3/d3',
 		moment: '../bower_components/moment/moment'
 	}

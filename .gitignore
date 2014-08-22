@@ -8,3 +8,4 @@ test/bower_components/
 styles/*.css
 vogelifix.sublime-workspace
 vogelifix.sublime-project
+npm-debug.log

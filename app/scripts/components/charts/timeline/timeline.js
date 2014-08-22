@@ -8,7 +8,7 @@ _define({
 }, function(m) {
 	'use strict';
 
-	var DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ssZ';
+	var DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
 	var timeline = function() {
 		var that = {}, my = {};
@@ -17,50 +17,6 @@ _define({
 		that.template = m.Template;
 		that.instanceId = that.name + m.Moment();
 		var o = m.Operators();
-
-		that.dummyData = [{
-			'title': 'Life',
-			'startDate': '1993-06-21 00:00:00'
-		},
-		{
-			'title': 'Chile',
-			'startDate': '1994-01-01 00:00:00',
-			'endDate': '1997-12-31 00:00:00'
-		},
-		{
-			'title': 'Primary school',
-			'startDate': '1998-01-01 00:00:00',
-			'endDate': '2000-12-31 00:00:00'
-		},
-		{
-			'title': 'Secondary school',
-			'startDate': '2000-01-01 00:00:00',
-			'endDate': '2008-12-31 00:00:00'
-		},
-		{
-			'title': 'Eracom',
-			'startDate': '2008-01-01 00:00:00',
-			'endDate': '2012-12-31 00:00:00'
-		},
-		{
-			'title': 'Graf Miville intership',
-			'startDate': '2009-01-01 00:00:00',
-			'endDate': '2010-12-31 00:00:00'
-		},
-		{
-			'title': '7sky intership',
-			'startDate': '2011-01-01 00:00:00',
-			'endDate': '2012-12-31 00:00:00'
-		},
-		{
-			'title': 'uberMetrics intership',
-			'startDate': '2012-01-01 00:00:00',
-			'endDate': '2013-12-31 00:00:00'
-		},
-		{
-			'title': 'uberMetrics',
-			'startDate': '2013-01-01 00:00:00'
-		}];
 
 		my.options = {
 			chart: {
@@ -85,9 +41,9 @@ _define({
 				}
 			},
 			view: {
-				unit: 'YYYY',
-				startValue: 1991,
-				endValue: 2014
+				unit: 'D',
+				startValue: '2000-01-01 00:00:00',
+				endValue: '2000-12-31 23:59:59'
 			}
 		};
 
@@ -96,38 +52,44 @@ _define({
 			return that;
 		};
 
-		my.createChart = function(data) {
-			var
-				chartWidth,
-				chartHeight,
-				dataset = my.getDataWithAdaptedUnits(data),
-				$chart = that.$el.find('.chart-container');
+		that.render = function() {
+			that.renderComponent();
+			var model = that.getModel();
 
-			$chart.html('');
+			if (model) {
+				var
+					chartWidth,
+					chartHeight,
+					data = model.get('data'),
+					dataset = my.getDataWithAdaptedUnits(data),
+					$chart = that.$el.find('.chart-container');
 
-			my.options.chart.width = $chart.innerWidth();
-			chartWidth = my.options.chart.width;
-			chartHeight = my.options.chart.height;
+				$chart.html('');
 
-			my.chart = m.d3.select($chart[0]).append('svg');
+				my.options.chart.width = $chart.innerWidth();
+				chartWidth = my.options.chart.width;
+				chartHeight = my.options.chart.height;
 
-			my.chart.attr('width', chartWidth)
-			   .attr('height', chartHeight);
+				my.chart = m.d3.select($chart[0]).append('svg');
 
-			var appliedData = my.chart.selectAll('rect')
-					.data(dataset);
+				my.chart.attr('width', chartWidth)
+				   .attr('height', chartHeight);
 
-			// rows
-			my.createRows(appliedData);
+				var appliedData = my.chart.selectAll('rect')
+						.data(dataset);
 
-			// events
-			my.createEvents(appliedData);
+				// rows
+				my.createRows(appliedData);
 
-			// labels
-			my.createTimeLabels();
+				// events
+				my.createEvents(appliedData);
 
-			// Tooltip
-			my.createTooltip();
+				// labels
+				my.createTimeLabels();
+
+				// Tooltip
+				my.createTooltip();
+			}
 		};
 
 		my.createRows = function(appliedData) {
@@ -184,7 +146,7 @@ _define({
 			events.attr('width', function(d) {
 				var
 					minWidth = my.options.chart.bar.minWidth,
-					width = Math.floor(o.pro(d.duration, columnWidth));
+					width = Math.floor(o.pro(d.duration.days(), columnWidth));
 				return width >= minWidth ? width : minWidth;
 			});
 
@@ -380,10 +342,11 @@ _define({
 					duration,
 					goesLater = false,
 					goesEarlier = false,
-					now = m.Moment().format(dataEnv.unit);
+					now = m.Moment().valueOf();
 
-				startValue = m.Moment(d.startDate, DATE_FORMAT).
-					format(dataEnv.unit);
+				dataEnv.startValue = m.Moment(dataEnv.startValue, DATE_FORMAT).valueOf();
+				dataEnv.endValue = m.Moment(dataEnv.endValue, DATE_FORMAT).valueOf();
+				dataEnv.duration = m.Moment.duration(dataEnv.endValue - dataEnv.startValue);
 				if (_.isUndefined(d.endDate) || d.endDate > dataEnv.endValue) {
 					endValue = now;
 					if (d.endDate > endValue) {
@@ -391,23 +354,22 @@ _define({
 					}
 				}
 				else {
-					endValue = m.Moment(d.endDate, DATE_FORMAT).
-						format(dataEnv.unit);
+					endValue = m.Moment(d.endDate, DATE_FORMAT).valueOf();
 				}
+
+				startValue = m.Moment(d.startDate, DATE_FORMAT).valueOf();
 
 				if (startValue < dataEnv.startValue) {
 					startValue = dataEnv.startValue;
 					goesEarlier = true;
 				}
 
-				startValue = o.num(startValue);
-				endValue = o.num(endValue);
-				duration = endValue - startValue;
+				duration = m.Moment.duration(endValue - startValue);
 
 				if (startValue >= dataEnv.startValue &&
 					endValue <= dataEnv.endValue) {
 					adaptedData.push({
-						title: d.name,
+						title: d.title,
 						startValue: startValue,
 						endValue: endValue,
 						duration: duration,
@@ -484,16 +446,23 @@ _define({
 			my.tooltip.style('opacity', 0);
 		};
 
-		that.setData = function(data) {
-			that.data = data;
-			my.createChart(that.data);
+		my.refresh = function() {
+			that.render();
 
 			var debouncedResize = _.debounce(function() {
-				my.options.chart.width = o.dif($(window).width(), 20);
-				my.options.chart.height = o.dif($(window).outerHeight(), 20);
-				my.createChart(that.data);
+				that.render();
 			}, 200);
 			$(window).resize(debouncedResize);
+		};
+
+		that.setModel = function(model) {
+			my.model = model;
+			my.model.on('change', my.refresh);
+			my.model.refresh();
+		};
+
+		that.getModel = function() {
+			return my.model;
 		};
 
 		var inherited = m.BaseView();

@@ -1,7 +1,8 @@
 _define({
 	BaseView: 'base/BaseView',
 	Template : 'text!pages/content/content.html',
-	Timeline: 'components/charts/timeline/timeline',
+	TimelineView: 'components/charts/timeline/timeline',
+	TimelineModel: 'components/charts/timeline/timelineModel',
 	Moment: 'moment',
 	Loading: 'util/loading'
 }, function(m) {
@@ -13,71 +14,30 @@ _define({
 		that.name = 'content';
 		that.instanceId = that.name + m.Moment();
 		that.template = m.Template;
-
-		that.children = {
-			timeline: new m.Timeline()
-		};
+		that.children = {};
 
 		that.construct = function() {
 			that.on('view_ready', that.onViewReady);
+			my.initChildren();
 			return that;
 		};
 
-		that.onViewReady = function() {
-			that.fetch().always(function() {
-				m.Loading.stop();
-			});
-		};
-
-		that.fetch = function() {
-			console.log('fetch.start');
+		my.initChildren = function() {
 			var
-				$dfdSingleEvents = $.Deferred(),
-				$dfdDurationEvents = $.Deferred(),
-				$dfdTotal = $.Deferred();
+				timelineView = new m.TimelineView(),
+				timelineModel = new m.TimelineModel();
 
-			window.Api.entries({
-				'content_type': '2svEnQffpKYo0we00YEmkg'
-			}).then(function(response) {
-				var cleanedResponse = my.parseResponse(response);
-				$dfdSingleEvents.resolve(cleanedResponse);
-			}, function(error) {
-				$dfdSingleEvents.reject(error);
+			that.on('after_render', function() {
+				that.children.timeline.setModel(timelineModel);
 			});
 
-			window.Api.entries({
-				'content_type': '4YRFiMRvKEUIKamUk0Gauo'
-			}).then(function(response) {
-				var cleanedResponse = my.parseResponse(response);
-				$dfdDurationEvents.resolve(cleanedResponse);
-			}, function(error) {
-				$dfdDurationEvents.reject(error);
-			});
-
-			$.when($dfdSingleEvents, $dfdDurationEvents)
-				.done(function(res1, res2) {
-					var cleanedResponse = _.union(res1, res2);
-					that.children.timeline.setData(cleanedResponse);
-					window.inlineNotif.show({
-						type: 'success',
-						title: 'success',
-						message: 'Api reached successfully'
-					});
-					console.log('fetch.done');
-					$dfdTotal.resolve();
-				}).fail(function(error) {
-					window.inlineNotif.show({
-						message: error.message
-					});
-					$dfdTotal.reject();
-				});
-			return $dfdTotal.promise();
+			that.children = {
+				timeline: timelineView
+			};
 		};
 
-		my.parseResponse = function(response) {
-			return _.map(response, function(data) {
-				return data.fields;
-			});
+		that.onViewReady = function() {
+			m.Loading.stop();
 		};
 
 		var inherited = m.BaseView();
