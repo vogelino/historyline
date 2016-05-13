@@ -2,15 +2,11 @@ import React from 'react';
 import MetaTags from '../seo/MetaTags';
 
 export default (props) => {
-	const { children } = this.props;
+	const { children } = props;
 	return (
 		<div id="core-layout">
 			<MetaTags />
-			<div className='view-container'>
-				<Navigation />
-				{children}
-				<Footer />
-			</div>
+			{children}
 		</div>
 	);
 }

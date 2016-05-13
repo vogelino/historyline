@@ -1,11 +1,12 @@
 import express from 'express';
 import http from 'http';
 import React from 'react';
+import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 
-const renderFullPage = (html, title, meta, link, state) => {
+const renderFullPage = (html, title, meta, link) => {
 	return `
 	<!DOCTYPE html>
 	<html>
@@ -30,12 +31,12 @@ const handleRender = (req, res, props) => {
 		</main>
 	);
 	const { title, meta, link } = Helmet.rewind();
-	res.send(renderFullPage(html, title, meta, link, state));
+	res.send(renderFullPage(html, title, meta, link));
 };
 
 const app = express();
 
-app.use(express.static('public/'));
+app.use(express.static('dist/'));
 
 app.use((req, res) => {
 	match({ routes, location: req.url }, (err, redirectLocation, props) => {
