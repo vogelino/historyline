@@ -2,11 +2,46 @@
   "name": "webpackRR",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/scripts/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "npm run clean-dist",
+    "start": "webpack-dev-server --env.dev --content-base dist",
+    "lint": "eslint ./src/scripts",
+    "clean-dist": "rimraf dist",
+    "prebuild": "npm run clean-dist",
+    "build": "webpack --env.dev",
+    "prebuild:prod": "npm run clean-dist",
+    "build:prod": "webpack --env.prod -p",
+    "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
+    "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod"
   },
   "keywords": [],
   "author": "Lucas Vogel <contact@vogelino.com> (http://vogelino.com/)",
-  "license": "ISC"
+  "license": "WTFPL",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.13.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.0.0",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
+    "html-webpack-plugin": "^2.22.0",
+    "webpack": "^2.1.0-beta.21",
+    "webpack-dev-server": "^1.15.1",
+    "webpack-validator": "^2.2.7"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.13.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
+  }
 }
