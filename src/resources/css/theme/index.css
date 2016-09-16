@@ -1,0 +1,13 @@
+@value normalBlue, normalWhite from './colors.css';
+
+/* Globals -------------------------------------------- */
+
+/* Colors */
+@value globalBackgroundColor: 	normalBlue;
+@value globalTextColor: 		normalWhite;
+
+/* Typography */
+@value globalTextFontFamily: 	'Ubuntu', Arial, sans-serif;
+@value globalTextFontWeight: 	400;
+@value globalTextFontSize: 		14px;
+@value globalTextLineHeight:	15px;

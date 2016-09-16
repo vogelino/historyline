@@ -1,0 +1,13 @@
+@value globalBackgroundColor, globalTextColor, globalTextFontFamily, globalTextFontWeight, globalTextFontSize, globalTextLineHeight from './theme/index.css';
+
+:global
+
+body {
+	margin: 0;
+	background-color: globalBackgroundColor;
+	color: globalTextColor;
+	font-family: globalTextFontFamily;
+	font-size: globalTextFontSize;
+	line-height: globalTextLineHeight;
+	font-weight: globalTextFontWeight;
+}

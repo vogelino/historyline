@@ -1,9 +1,11 @@
 import React from 'react';
+import '../../resources/css/global.css';
+import styles from './App.css';
 import Timeline from './Timeline';
 import Header from './Header';
 
 export default () => (
-	<div className="app-root">
+	<div className={styles.App}>
 		<Header />
 		<Timeline />
 	</div>

@@ -1,0 +1,17 @@
+/* Blues */
+@value darkBlue: 		#232e38;
+@value middleDarkBlue: 	#273541;
+@value normalBlue: 		#2d3d4b;
+@value mediumBlue: 		#344859;
+@value middleLightBlue: #435c73;
+@value lightBlue: 		#a3b0bb;
+
+/* Grays */
+@value gray: 			#495662;
+@value mediumGray: 		#a3b0bb;
+@value lightGray:		#dfe5e8;
+@value normalWhite: 	#eff3f0;
+
+/* MainColors */
+@value acidGreen: 		#4cb979;
+@value normalRed: 		#cf4a5b;
