@@ -1,6 +1,5 @@
 @value globalBackgroundColor, globalTextColor, globalTextFontFamily, globalTextFontWeight, globalTextFontSize, globalTextLineHeight from './theme/index.css';
 
-
 :global body {
 	background-color: globalBackgroundColor;
 	color: globalTextColor;
@@ -18,18 +17,4 @@
 	width: 100%;
 	height: 100%;
 	position: relative;
-}
-
-:global h1,
-:global h2,
-:global h3,
-:global h4,
-:global h5,
-:global h6 {
-	margin: 0;
-}
-
-:global h5 {
-	font-size: globalTextFontSize;
-	line-height: globalTextLineHeight;
 }
