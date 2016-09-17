@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from './TimelineFilters.css';
 import Icon from '../../Uikit/Icon';
 import FiltersSelection from './FiltersSelection';
 import VisTypeSwitch from './VisTypeSwitch';
 
 const TimelineFilters = () => (
-	<div className="timeline-filters-root">
+	<div className={styles.root}>
 		<Icon iconId="bars" />
 		<FiltersSelection
 			activeFilterText="Year 2000"

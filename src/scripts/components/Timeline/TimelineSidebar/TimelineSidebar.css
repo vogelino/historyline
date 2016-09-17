@@ -1,0 +1,23 @@
+@value filterHeight, headerHeight, sidebarWidth, sidebarBackgroundColor from '../../../../resources/css/theme/index.css';
+
+.root {
+	width: sidebarWidth;
+	background: sidebarBackgroundColor;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	box-sizing: border-box;
+	padding-top: headerHeight;
+}
+
+.searchField {
+	height: filterHeight;
+	position: absolute;
+	top: headerHeight;
+	left: 0;
+	width: 100%;
+	background: sidebarBackgroundColor;
+	z-index: 3;
+}

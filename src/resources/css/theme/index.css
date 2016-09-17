@@ -1,13 +1,37 @@
-@value normalBlue, normalWhite from './colors.css';
+@value lightBlue, middleLightBlue, middleDarkBlue, darkBlue, normalBlue, normalWhite from './colors.css';
 
 /* Globals -------------------------------------------- */
 
 /* Colors */
-@value globalBackgroundColor: 	normalBlue;
-@value globalTextColor: 		normalWhite;
+@value globalBackgroundColor: 			normalBlue;
+@value globalTextColor: 				normalWhite;
+@value globalSecondaryTextColor: 		lightBlue;
 
 /* Typography */
-@value globalTextFontFamily: 	'Ubuntu', Arial, sans-serif;
-@value globalTextFontWeight: 	400;
-@value globalTextFontSize: 		14px;
-@value globalTextLineHeight:	15px;
+@value globalTextFontFamily: 			'Ubuntu', Arial, sans-serif;
+@value globalTextFontWeight: 			400;
+@value globalTextFontSize: 				14px;
+@value globalTextLineHeight:			15px;
+
+
+/* Ui ------------------------------------------------- */
+
+/* Header */
+@value headerHeight: 					50px;
+@value headerBackgroundColor: 			normalBlue;
+@value headerLogoFontSize: 				20px;
+
+/* Sidebar */
+@value sidebarWidth: 					265px;
+@value sidebarBackgroundColor: 			middleDarkBlue;
+
+/* Filters */
+@value filterHeight: 					headerHeight;
+@value filtersBackgroundColor: 			darkBlue;
+
+/* Time Selection */
+@value timeSelectionBackgroundColor: 	middleDarkBlue;
+
+/* Event List */
+@value eventListLineColor: 				normalBlue;
+@value eventListDotColor: 				middleLightBlue;

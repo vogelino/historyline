@@ -1,0 +1,21 @@
+@value headerHeight, headerBackgroundColor, headerLogoFontSize from '../../../resources/css/theme/index.css';
+
+.root {
+	box-sizing: border-box;
+	width: 100%;
+	height: headerHeight;
+	background-color: headerBackgroundColor;
+	padding: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+.logo {
+	font-size: headerLogoFontSize;
+}
+
+.logoLine {
+	font-weight: 300;
+}

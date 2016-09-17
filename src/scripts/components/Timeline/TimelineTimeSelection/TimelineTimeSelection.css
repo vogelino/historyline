@@ -1,0 +1,6 @@
+@value timeSelectionBackgroundColor from '../../../../resources/css/theme/index.css';
+
+.root {
+	width: 100%;
+	background: timeSelectionBackgroundColor;
+}
