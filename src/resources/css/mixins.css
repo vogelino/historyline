@@ -1,0 +1,23 @@
+.fullWidth {
+	width: 100%;
+}
+
+.fullHeight {
+	height: 100%;
+}
+
+.fullSize {
+	composes: fullHeight;
+	composes: fullWidth;
+	margin: 0;
+}
+
+.fullSizeRelative {
+	composes: fullSize;
+	position: relative;
+}
+
+.fullSizeAbsolute {
+	composes: fullSize;
+	position: absolute;
+}
