@@ -1,4 +1,4 @@
-@value lightBlue, middleLightBlue, middleDarkBlue, darkBlue, normalBlue, normalWhite from './colors.css';
+@value acidGreen, normalRed, mediumBlue, lightBlue, middleLightBlue, middleDarkBlue, darkBlue, normalBlue, normalWhite from './colors.css';
 
 /* Globals -------------------------------------------- */
 
@@ -13,6 +13,19 @@
 @value globalTextFontSize: 				14px;
 @value globalTextLineHeight:			15px;
 
+
+/* Base elements -------------------------------------- */
+
+/* Links */
+@value linksColor: 						acidGreen;
+@value linksHoverColor: 				normalRed;
+@value linksActiveColor: 				normalRed;
+
+/* Text inputs */
+@value textInputsBackgroundColor: 		normalBlue;
+@value textInputsBorderColor: 			mediumBlue;
+@value textInputsPlaceholderColor:		middleLightBlue;
+@value textInputsActiveBorderColor: 	linksColor;
 
 /* Ui ------------------------------------------------- */
 

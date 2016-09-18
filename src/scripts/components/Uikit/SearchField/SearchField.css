@@ -1,0 +1,19 @@
+.root {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px 20px;
+	position: relative;
+}
+
+.input {
+	composes: input from '../TextInput/TextInput.css';
+	width: 100%;
+	padding-right: 30px;
+}
+
+.icon {
+	composes: icon from '../Icon/Icon.css';
+	position: absolute;
+	top: 15px;
+	right: 28px;
+}

@@ -21,7 +21,8 @@ module.exports = (env) => {
 			loaders: [
 				{ test: /\.js$/, loader: 'babel!eslint', exclude: /node_modules/ },
 				{ test: /\.css/, loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]') },
-				{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=resources/fonts/[name].[ext]' }
+				{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=resources/fonts/[name].[ext]' },
+				{ test: /\.svg?$/, loader: 'svg-sprite!svgo', include: resolve(__dirname, 'src/resources/icons') }
 			]
 		},
 		plugins: [

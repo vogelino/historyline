@@ -1,21 +1,24 @@
 import React, { PropTypes } from 'react';
+import styles from './TextInput.css';
 
-const SearchField = ({ placeholder, value }) => (
+const SearchField = ({ placeholder, value, className }) => (
 	<input
 		type="text"
-		className="text-input"
+		className={className || styles.input}
 		placeholder={placeholder}
 		value={value}
 	/>
 );
 
 SearchField.defaultProps = {
-	value: ''
+	value: '',
+	className: ''
 };
 
 SearchField.propTypes = {
 	placeholder: PropTypes.string.isRequired,
-	value: PropTypes.string
+	value: PropTypes.string,
+	className: PropTypes.string
 };
 
 export default SearchField;

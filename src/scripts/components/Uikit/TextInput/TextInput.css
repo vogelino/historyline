@@ -1,0 +1,41 @@
+@value textInputsActiveBorderColor, globalTextFontSize, globalTextFontFamily, textInputsBackgroundColor, textInputsBorderColor, textInputsPlaceholderColor from '../../../../resources/css/theme/index.css';
+
+.input {
+	box-sizing: border-box;
+	padding: 3px 15px;
+	background: textInputsBackgroundColor;
+	border: 1px solid textInputsBorderColor;
+	font-size: globalTextFontSize;
+	height: 26px;
+	border-radius: 13px;
+	outline: none;
+}
+
+.input:focus {
+	border: 1px solid textInputsActiveBorderColor;
+	box-shadow: 0 0 0 1px textInputsActiveBorderColor;
+}
+
+:global ::-webkit-input-placeholder {
+	color: textInputsPlaceholderColor;
+	font-family: globalTextFontFamily;
+	font-weight: 300;
+}
+
+:global :-moz-placeholder {
+	color: textInputsPlaceholderColor;
+	font-family: globalTextFontFamily;
+	font-weight: 300;
+}
+
+:global ::-moz-placeholder {
+	color: textInputsPlaceholderColor;
+	font-family: globalTextFontFamily;
+	font-weight: 300;
+}
+
+:global :-ms-input-placeholder {
+	color: textInputsPlaceholderColor;
+	font-family: globalTextFontFamily;
+	font-weight: 300;
+}
