@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import styles from './Icon.css';
+import icons from './iconsConstants.js';
 
 const Icon = ({ width, height, iconId, className }) => (
 	<svg className={className || styles.icon} width={width} height={height}>
-		<use xlinkHref={iconId} />
+		<use xlinkHref={icons[iconId]} />
 	</svg>
 );
 
