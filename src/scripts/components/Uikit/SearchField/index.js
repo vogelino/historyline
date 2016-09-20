@@ -7,7 +7,7 @@ import TextInput from '../TextInput';
 const SearchField = ({ placeholder, className }) => (
 	<div className={className || styles.root}>
 		<TextInput className={styles.input} placeholder={placeholder} />
-		<Icon className={styles.icon} iconId={icons.search} />
+		<Icon className={styles.icon} iconId={icons.SEARCH} />
 	</div>
 );
 

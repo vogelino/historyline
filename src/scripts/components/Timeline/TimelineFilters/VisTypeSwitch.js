@@ -6,8 +6,8 @@ const VisTypeSwitch = () => (
 	<div className="vis-type-switch">
 		<Switch
 			activeIndex={0}
-			option1Icon={icons.clock}
-			option2Icon={icons.map}
+			option1Icon={icons.CLOCK}
+			option2Icon={icons.MAP}
 		/>
 	</div>
 );

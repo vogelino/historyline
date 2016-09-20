@@ -19,10 +19,25 @@ module.exports = (env) => {
 		bail: env.prod,
 		module: {
 			loaders: [
-				{ test: /\.js$/, loader: 'babel!eslint', exclude: /node_modules/ },
-				{ test: /\.css/, loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]') },
-				{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=resources/fonts/[name].[ext]' },
-				{ test: /\.svg?$/, loader: 'svg-sprite!svgo', include: resolve(__dirname, 'src/resources/icons') }
+				{
+					test: /\.js$/,
+					loader: 'babel!eslint',
+					exclude: /node_modules/
+				},
+				{
+					test: /\.css/,
+					loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+				},
+				{
+					test: /\.(eot|svg|ttf|woff|woff2)$/,
+					loader: 'file?name=resources/fonts/[name].[ext]',
+					include: resolve(__dirname, 'src/resources/fonts')
+				},
+				{
+					test: /\.svg$/,
+					loader: 'svg-sprite?name=resources/icons/[name]_[hash]',
+					include: resolve(__dirname, 'src/resources/icons')
+				}
 			]
 		},
 		plugins: [
@@ -30,7 +45,8 @@ module.exports = (env) => {
 				title: name,
 				template: './resources/index.ejs'
 			}),
-			new ExtractTextPlugin('styles.css')
+			new ExtractTextPlugin('styles.css'),
+			new ExtractTextPlugin('sprite.svg')
 		]
 	}
 };

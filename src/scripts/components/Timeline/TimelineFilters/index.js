@@ -7,7 +7,7 @@ import VisTypeSwitch from './VisTypeSwitch';
 
 const TimelineFilters = () => (
 	<div className={styles.root}>
-		<Icon iconId={icons.menu} />
+		<Icon iconId={icons.MENU} />
 		<FiltersSelection
 			activeFilterText="Year 2000"
 			label="Period"

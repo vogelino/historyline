@@ -3,7 +3,7 @@ import styles from './Icon.css';
 
 const Icon = ({ width, height, iconId, className }) => (
 	<svg className={className || styles.icon} width={width} height={height}>
-		<use xlinkHref={`/iconSprite.svg#${iconId}`} />
+		<use xlinkHref={iconId} />
 	</svg>
 );
 
