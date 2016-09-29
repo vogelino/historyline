@@ -6,3 +6,7 @@
 	box-sizing: border-box;
 	padding: 20px;
 }
+
+.link {
+	composes: link from '../../../../resources/css/uiKit.css';
+}

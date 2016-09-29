@@ -13,6 +13,7 @@
 
 .icon {
 	composes: icon from '../Icon/Icon.css';
+	composes: link from '../../../../resources/css/uiKit.css';
 	position: absolute;
 	top: 15px;
 	right: 28px;

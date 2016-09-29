@@ -1,0 +1,16 @@
+@value linksActiveColor, linksHoverColor, linksColor from './theme/index.css';
+
+.link {
+	color: linksColor;
+	cursor: pointer;
+	transition: color 100ms ease-in-out
+}
+
+.link:hover {
+	color: linksHoverColor
+}
+
+.link:active,
+.link.active {
+	color: linksActiveColor
+}
