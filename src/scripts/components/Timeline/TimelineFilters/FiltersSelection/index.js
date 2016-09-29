@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
+import styles from './FiltersSelection.css';
 
 const FiltersSelection = ({ label, activeFilterText }) => (
-	<form className="timeline-filters-selection">
-		<span className="filter-selection-label">{label}:</span>
-		<span className="filter-selection-value">{activeFilterText}</span>
+	<form className={styles.root}>
+		<span className={styles.label}>{label}:</span>
+		<span className={styles.value}>{activeFilterText}</span>
 	</form>
 );
 
