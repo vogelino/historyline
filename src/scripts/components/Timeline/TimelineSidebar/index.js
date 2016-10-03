@@ -5,7 +5,7 @@ import styles from './TimelineSidebar.css';
 import SearchField from '../../Uikit/SearchField';
 import EventsList from './EventsList';
 import { mapCssClasses } from '../../../utilities/styleUtils';
-import * as filtersActions from '../../../actions/filters';
+import * as filtersActions from '../../../redux/filters/actionCreators';
 
 const TimelineSidebar = ({
 	isLeftSidebarOpen,

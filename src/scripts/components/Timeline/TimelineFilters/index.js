@@ -5,7 +5,7 @@ import styles from './TimelineFilters.css';
 import Icon from '../../Uikit/Icon';
 import FiltersSelection from './FiltersSelection';
 import VisTypeSwitch from './VisTypeSwitch';
-import * as uiActions from '../../../actions/ui';
+import * as uiActions from '../../../redux/ui/actionCreators';
 
 const TimelineFilters = ({
 	toggleLeftSidebar,

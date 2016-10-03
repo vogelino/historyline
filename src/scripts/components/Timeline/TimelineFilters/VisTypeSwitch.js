@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Switch from '../../Uikit/Switch';
 import styles from './TimelineFilters.css';
-import * as visualizationActions from '../../../actions/visualization';
+import * as visualizationActions from '../../../redux/visualization/actionCreators';
 
 const VisTypeSwitch = ({
 	activeIndex,
