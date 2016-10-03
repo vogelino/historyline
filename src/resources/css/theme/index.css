@@ -13,6 +13,12 @@
 @value globalTextFontSize: 				14px;
 @value globalTextLineHeight:			15px;
 
+/* Transitions */
+@value transitionSpeedQuick: 			150ms;
+@value transitionSpeedMedium: 			300ms;
+@value transitionSpeedSlow: 			600ms;
+@value transitionSmoothSmoothing: 		cubic-bezier(0.190, 1.000, 0.220, 1.000);
+
 
 /* Base elements -------------------------------------- */
 
