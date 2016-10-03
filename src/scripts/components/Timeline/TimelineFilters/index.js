@@ -27,10 +27,7 @@ const TimelineFilters = ({
 			<Icon iconId="rewind" width={20} height={20} />
 		</a>
 		{activeSearchTerms.length ? (
-			<FiltersSelection
-				label="Search terms"
-				className={styles.searchTerms}
-			>
+			<FiltersSelection label="Search terms">
 				{activeSearchTerms.map(({ value, id }) => (
 					<SearchTerm key={id} {...{ value, id }}>
 						{value}
