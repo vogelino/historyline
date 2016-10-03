@@ -1,20 +1,19 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 import styles from './EventsList.css';
 
 const EventListItem = ({
-	id,
 	date,
 	description
 }) => (
-	<li id={id} className={styles.item}>
+	<li className={styles.item}>
 		<span className={styles.dot} />
-		<strong className={styles.date}>{date}</strong>
-		<p>{description}</p>
+		<strong className={styles.date}>{moment(date, 'YYYY/MM/DD').format('MMMM Do YYYY')}</strong>
+		<p className={styles.description}>{description}</p>
 	</li>
 );
 
 EventListItem.propTypes = {
-	id: PropTypes.number.isRequired,
 	date: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired
 };

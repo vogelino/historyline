@@ -27,6 +27,11 @@
 .date {
 	margin-bottom: 3px;
 	display: inline-block;
+	font-weight: 500;
+}
+
+.description {
+	font-weight: 300;
 }
 
 .dot {
