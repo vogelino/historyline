@@ -1,4 +1,4 @@
-@value textInputsActiveBorderColor, globalTextFontSize, globalTextFontFamily, textInputsBackgroundColor, textInputsBorderColor, textInputsPlaceholderColor from '../../../../resources/css/theme/index.css';
+@value globalTextFontFamily, textInputsActiveBorderColor, globalTextFontSize, globalTextFontFamily, textInputsBackgroundColor, textInputsBorderColor, textInputsPlaceholderColor from '../../../../resources/css/theme/index.css';
 
 .input {
 	box-sizing: border-box;
@@ -6,14 +6,15 @@
 	background: textInputsBackgroundColor;
 	border: 1px solid textInputsBorderColor;
 	font-size: globalTextFontSize;
-	height: 26px;
+	min-height: 26px;
 	border-radius: 13px;
 	outline: none;
+	color: inherit;
+	font-family: globalTextFontFamily;
 }
 
 .input:focus {
-	border: 1px solid textInputsActiveBorderColor;
-	box-shadow: 0 0 0 1px textInputsActiveBorderColor;
+	box-shadow: inset 0 0 0 1px textInputsActiveBorderColor;
 }
 
 :global ::-webkit-input-placeholder {

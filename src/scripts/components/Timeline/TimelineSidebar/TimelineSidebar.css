@@ -1,4 +1,4 @@
-@value transitionSpeedMedium, transitionSmoothSmoothing, filterHeight, headerHeight, sidebarWidth, sidebarBackgroundColor from '../../../../resources/css/theme/index.css';
+@value filtersBackgroundColor, globalTextColor, transitionSpeedMedium, transitionSmoothSmoothing, filterHeight, headerHeight, sidebarWidth, sidebarBackgroundColor from '../../../../resources/css/theme/index.css';
 
 .root {
 	width: sidebarWidth;
@@ -9,7 +9,7 @@
 	left: 0;
 	z-index: 2;
 	box-sizing: border-box;
-	padding-top: headerHeight;
+	padding-top: calc(headerHeight + 20px);
 	transition: transform transitionSpeedMedium transitionSmoothSmoothing;
 	transform: translateX(calc(sidebarWidth * -1));
 }
@@ -26,4 +26,23 @@
 	width: 100%;
 	background: sidebarBackgroundColor;
 	z-index: 3;
+	color: globalTextColor;
+}
+
+.searchFieldInput {
+	width: 100%;
+	height: auto;
+	border-radius: 0;
+	box-shadow: inset 0 -1px 0 0 filtersBackgroundColor;
+}
+
+.searchFieldInput :global(input) {
+	border-radius: 0;
+	border: 0;
+	min-height: calc(filterHeight - 4px);
+	background: none;
+}
+
+.searchFieldInput :global(svg) {
+	right: 15px;
 }
