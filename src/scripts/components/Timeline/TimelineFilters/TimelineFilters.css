@@ -15,6 +15,7 @@
 
 .switch {
 	float: right;
+	margin-top: -8px;
 }
 
 .sibebarToggler {
