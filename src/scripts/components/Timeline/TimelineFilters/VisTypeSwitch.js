@@ -1,26 +1,27 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Switch from '../../Uikit/Switch';
 import styles from './TimelineFilters.css';
-import { switchVisualizationType } from '../../../actions/actionsCreators';
+import * as visualizationActions from '../../../actions/visualization';
 
 const VisTypeSwitch = ({
 	activeIndex,
-	onSwitch
+	toggleVisualizationType
 }) => (
 	<div className={styles.switch}>
 		<Switch
 			activeIndex={activeIndex}
 			option1Icon="clock"
 			option2Icon="map"
-			onSwitch={onSwitch}
+			onSwitch={toggleVisualizationType}
 		/>
 	</div>
 );
 
 VisTypeSwitch.propTypes = {
 	activeIndex: PropTypes.number.isRequired,
-	onSwitch: PropTypes.func.isRequired
+	toggleVisualizationType: PropTypes.func.isRequired
 };
 
 
@@ -28,8 +29,7 @@ const mapStateToProps = ({ visualization }) => ({
 	activeIndex: visualization.type === 'map' ? 1 : 0
 });
 
-const mapDispatchToProps = (dispatch) => ({
-	onSwitch: () => dispatch(switchVisualizationType())
-});
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators(visualizationActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(VisTypeSwitch);

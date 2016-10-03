@@ -1,7 +1,7 @@
 import * as ACTIONS from './actionTypes';
 
-export const switchVisualizationType = () => ({
+export const toggleVisualizationType = () => ({
 	type: ACTIONS.SWITCH_VISUALIZATION_TYPE
 });
 
-export default switchVisualizationType;
+export default toggleVisualizationType;

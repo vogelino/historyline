@@ -4,7 +4,7 @@ const initialState = {
 	type: 'timeline'
 };
 
-const visualizationReducer = (state = initialState, { type, payload }) => {
+const visualizationReducer = (state = initialState, { type }) => {
 	switch (type) {
 	case ACTIONS.SWITCH_VISUALIZATION_TYPE:
 		return {

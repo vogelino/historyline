@@ -1,4 +1,4 @@
-@value filterHeight, headerHeight, sidebarWidth, sidebarBackgroundColor from '../../../../resources/css/theme/index.css';
+@value transitionSpeedMedium, transitionSmoothSmoothing, filterHeight, headerHeight, sidebarWidth, sidebarBackgroundColor from '../../../../resources/css/theme/index.css';
 
 .root {
 	width: sidebarWidth;
@@ -10,6 +10,12 @@
 	z-index: 2;
 	box-sizing: border-box;
 	padding-top: headerHeight;
+	transition: transform transitionSpeedMedium transitionSmoothSmoothing;
+	transform: translateX(calc(sidebarWidth * -1));
+}
+
+.root.opened {
+	transform: translateX(0);
 }
 
 .searchField {
