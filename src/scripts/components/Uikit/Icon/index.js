@@ -1,17 +1,23 @@
 import React, { PropTypes } from 'react';
 import styles from './Icon.css';
 import icons from './iconsConstants.js';
+import { mapCssClasses } from '../../../utilities/styleUtils';
 
-const Icon = ({ width, height, iconId, className }) => (
-	<svg className={className || styles.icon} width={width} height={height}>
+const Icon = ({ width, height, iconId, className, ...rest }) => (
+	<svg
+		className={mapCssClasses({
+			[className]: Boolean(className),
+			[styles.icon]: true
+		})}
+		{...{ ...rest, width, height }}
+	>
 		<use xlinkHref={icons[iconId]} />
 	</svg>
 );
 
 Icon.defaultProps = {
 	width: 16,
-	height: 16,
-	className: ''
+	height: 16
 };
 
 Icon.propTypes = {
