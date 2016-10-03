@@ -1,10 +1,12 @@
-@value transitionSpeedQuick, transitionSmoothSmoothing, filtersBackgroundColor, filterHeight from '../../../../resources/css/theme/index.css';
+@value sidebarBackgroundColor, transitionSpeedMedium, transitionSmoothSmoothing, filtersBackgroundColor, filterHeight from '../../../../resources/css/theme/index.css';
 
 .root {
 	background: filtersBackgroundColor;
 	width: 100%;
+	height: filterHeight;
 	box-sizing: border-box;
-	padding: 13px 20px;
+	padding: 18px 20px 18px calc(filterHeight + 20px);
+	position: relative;
 }
 
 .link {
@@ -15,12 +17,26 @@
 	float: right;
 }
 
-.sibebarToggler :global(svg) {
-	transform-origin: center;
-	transition: transform transitionSpeedQuick transitionSmoothSmoothing;
-	transform: rotate(360deg);
+.sibebarToggler {
+	width: filterHeight;
+	height: filterHeight;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: sidebarBackgroundColor;
+	padding: 15px;
+	box-sizing: border-box;
+	box-shadow: inset 1px -1px 0 0 filtersBackgroundColor;
 }
 
-.sibebarToggler :global(svg):hover {
+.sibebarToggler :global(svg) {
+	transform-origin: center;
+	transition: transform transitionSpeedMedium transitionSmoothSmoothing;
+	transform: rotate(180deg);
+	transition-delay: transitionSpeedMedium;
+}
+
+.opened .sibebarToggler :global(svg) {
+	transition-delay: transitionSpeedMedium;
 	transform: rotate(0);
 }

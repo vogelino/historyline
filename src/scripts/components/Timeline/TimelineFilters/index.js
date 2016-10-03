@@ -7,18 +7,24 @@ import FiltersSelection from './FiltersSelection';
 import VisTypeSwitch from './VisTypeSwitch';
 import SearchTerm from './SearchTerm';
 import * as uiActions from '../../../redux/ui/actionCreators';
+import { mapCssClasses } from '../../../utilities/styleUtils';
 
 const TimelineFilters = ({
 	toggleLeftSidebar,
 	isSidebarOpen,
 	activeSearchTerms
 }) => (
-	<div className={styles.root}>
+	<div
+		className={mapCssClasses({
+			[styles.root]: true,
+			[styles.opened]: isSidebarOpen
+		})}
+	>
 		<a
 			className={`${styles.sibebarToggler} ${styles.link}`}
 			onClick={() => toggleLeftSidebar()}
 		>
-			<Icon iconId={!isSidebarOpen ? 'menu' : 'cross'} width={20} height={20} />
+			<Icon iconId="rewind" width={20} height={20} />
 		</a>
 		{activeSearchTerms.length ? (
 			<FiltersSelection
