@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import exampleReducer from './exampleReducer';
+import visualization from './visualization';
 
 export default combineReducers({
-	exampleReducer
+	visualization
 });

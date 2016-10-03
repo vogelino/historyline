@@ -1,8 +1,7 @@
 import * as ACTIONS from './actionTypes';
 
-export const showExample = (example) => ({
-	type: ACTIONS.EXAMPLE_TYPE,
-	example
+export const switchVisualizationType = () => ({
+	type: ACTIONS.SWITCH_VISUALIZATION_TYPE
 });
 
-export default showExample;
+export default switchVisualizationType;

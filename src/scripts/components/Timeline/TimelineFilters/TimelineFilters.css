@@ -10,3 +10,7 @@
 .link {
 	composes: link from '../../../../resources/css/uiKit.css';
 }
+
+.switch {
+	float: right;
+}

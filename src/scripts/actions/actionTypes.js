@@ -1,3 +1,5 @@
-export const EXAMPLE_TYPE = 'EXAMPLE_TYPE';
+export const SWITCH_VISUALIZATION_TYPE = 'SWITCH_VISUALIZATION_TYPE';
 
-export default EXAMPLE_TYPE;
+export default {
+	SWITCH_VISUALIZATION_TYPE
+};

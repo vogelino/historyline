@@ -1,0 +1,55 @@
+@value linksHoverColor, transitionSpeedQuick, transitionSmoothSmoothing, linksActiveColor, normalBlue, middleDarkBlue from '../../../../resources/css/theme/index.css';
+@value switchSideSize: 32px;
+@value switchTotalWidth: 64px;
+
+.root,
+.option,
+.handle {
+	display: inline-block;
+	width: switchTotalWidth;
+	height: switchSideSize;
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+
+.root {
+	margin-top: -6px;
+	background-color: middleDarkBlue;
+	position: relative;
+}
+
+.option,
+.handle {
+	width: switchSideSize;
+	padding: 8px;
+	composes: link from '../../../../resources/css/uiKit.css';
+	position: absolute;
+	top: 0;
+}
+
+.handle {
+	z-index: 1;
+	background: linksActiveColor;
+	transition: transform transitionSpeedQuick transitionSmoothSmoothing;
+}
+
+.option {
+	z-index: 2;
+}
+
+.option:first-child {
+	left: 0;
+}
+
+.option:nth-child(2) {
+	right: 0;
+}
+
+.root.switched .handle {
+	transform: translateX(switchSideSize);
+}
+
+.root.switched .option:nth-child(2),
+.root.unswitched .option:first-child {
+	color: linksHoverColor;
+}
