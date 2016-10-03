@@ -1,4 +1,4 @@
-@value filtersBackgroundColor from '../../../../resources/css/theme/index.css';
+@value transitionSpeedQuick, transitionSmoothSmoothing, filtersBackgroundColor, filterHeight from '../../../../resources/css/theme/index.css';
 
 .root {
 	background: filtersBackgroundColor;
@@ -13,4 +13,14 @@
 
 .switch {
 	float: right;
+}
+
+.sibebarToggler :global(svg) {
+	transform-origin: center;
+	transition: transform transitionSpeedQuick transitionSmoothSmoothing;
+	transform: rotate(360deg);
+}
+
+.sibebarToggler :global(svg):hover {
+	transform: rotate(0);
 }

@@ -5,43 +5,56 @@ import styles from './TimelineFilters.css';
 import Icon from '../../Uikit/Icon';
 import FiltersSelection from './FiltersSelection';
 import VisTypeSwitch from './VisTypeSwitch';
+import SearchTerm from './SearchTerm';
 import * as uiActions from '../../../redux/ui/actionCreators';
 
 const TimelineFilters = ({
 	toggleLeftSidebar,
-	isSidebarOpen
+	isSidebarOpen,
+	activeSearchTerms
 }) => (
 	<div className={styles.root}>
 		<a
-			className={styles.link}
+			className={`${styles.sibebarToggler} ${styles.link}`}
 			onClick={() => toggleLeftSidebar()}
 		>
 			<Icon iconId={!isSidebarOpen ? 'menu' : 'cross'} width={20} height={20} />
 		</a>
-		<FiltersSelection
-			activeFilterText="Year 2000"
-			label="Period"
-		/>
-		<FiltersSelection
-			activeFilterText="Random"
-			label="Category"
-		/>
-		<FiltersSelection
-			activeFilterText="Worldwide"
-			label="Geography"
-		/>
+		{activeSearchTerms.length ? (
+			<FiltersSelection
+				label="Search terms"
+				className={styles.searchTerms}
+			>
+				{activeSearchTerms.map(({ value, id }) => (
+					<SearchTerm key={id} {...{ value, id }}>
+						{value}
+					</SearchTerm>
+				))}
+			</FiltersSelection>
+		) : false }
+		<FiltersSelection label="Category">
+			Random
+		</FiltersSelection>
+		<FiltersSelection label="Geography">
+			Worldwide
+		</FiltersSelection>
 		<VisTypeSwitch />
 	</div>
 );
 
 TimelineFilters.propTypes = {
 	toggleLeftSidebar: PropTypes.func.isRequired,
-	isSidebarOpen: PropTypes.bool.isRequired
+	isSidebarOpen: PropTypes.bool.isRequired,
+	activeSearchTerms: PropTypes.arrayOf(PropTypes.shape({
+		value: PropTypes.string.isRequired,
+		id: PropTypes.string.isRequired
+	})).isRequired
 };
 
 
-const mapStateToProps = ({ ui }) => ({
-	isSidebarOpen: ui.leftSidebar.open
+const mapStateToProps = ({ ui, filters }) => ({
+	isSidebarOpen: ui.leftSidebar.open,
+	activeSearchTerms: filters.searchTerm.active
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(uiActions, dispatch);

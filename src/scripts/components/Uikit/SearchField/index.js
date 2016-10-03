@@ -10,6 +10,7 @@ const SearchField = ({ placeholder, className, onType, value, onSubmit }) => (
 			className={styles.input}
 			placeholder={placeholder}
 			onType={onType}
+			onSubmit={onSubmit}
 			value={value}
 		/>
 		<Icon

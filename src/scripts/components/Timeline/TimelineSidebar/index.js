@@ -24,7 +24,9 @@ const TimelineSidebar = ({
 				placeholder="Search something"
 				value={searchTermInField}
 				onType={setSearchTerm}
-				onSubmit={submitSearchTerm}
+				onSubmit={() => {
+					if (searchTermInField) submitSearchTerm();
+				}}
 				className={styles.searchFieldInput}
 			/>
 		</div>

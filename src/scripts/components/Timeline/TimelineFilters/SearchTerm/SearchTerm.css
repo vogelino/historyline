@@ -1,0 +1,23 @@
+@value transitionSpeedQuick, transitionSmoothSmoothing, globalTextFontSize, globalTextColor, linksActiveColor from '../../../../../resources/css/theme/index.css';
+
+.root {
+	display: inline-block;
+	background: linksActiveColor;
+	color: globalTextColor;
+	padding: 8px 10px;
+	margin: -6px 5px 0 0;
+	border-radius: 3px;
+	font-size: globalTextFontSize;
+}
+
+.icon {
+	margin-left: 5px;
+	cursor: pointer;
+	transform-origin: center;
+	transform: rotate(360deg);
+	transition: transform transitionSpeedQuick transitionSmoothSmoothing;
+}
+
+.icon:hover {
+	transform: rotate(0);
+}
