@@ -47,6 +47,7 @@ const mapStateToProps = ({ ui, filters }) => ({
 	searchTermInField: filters.searchTerm.inField
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(filtersActions, dispatch);
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators({ ...filtersActions }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimelineSidebar);

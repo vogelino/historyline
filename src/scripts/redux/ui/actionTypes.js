@@ -1,3 +1,5 @@
 export const TOGGLE_LEFT_SIDEBAR = 'TOGGLE_LEFT_SIDEBAR';
 
-export default { TOGGLE_LEFT_SIDEBAR };
+export default {
+	TOGGLE_LEFT_SIDEBAR
+};

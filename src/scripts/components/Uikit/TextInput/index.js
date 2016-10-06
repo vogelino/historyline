@@ -3,32 +3,37 @@ import styles from './TextInput.css';
 
 const ENTER_KEYCODE = 13;
 
-const SearchField = ({ placeholder, value, className, onType, onSubmit }) => (
+const TextInput = ({
+	placeholder,
+	value,
+	className,
+	onType,
+	onSubmit
+}) => (
 	<input
 		type="text"
 		className={className || styles.input}
-		placeholder={placeholder}
-		value={value}
 		onKeyUp={(evt) => {
 			if (String(evt.keyCode || evt.which) === String(ENTER_KEYCODE)) {
 				onSubmit(evt.target.value);
 			}
 		}}
 		onChange={(evt) => onType(evt.target.value)}
+		{...{ value, placeholder }}
 	/>
 );
 
-SearchField.defaultProps = {
+TextInput.defaultProps = {
 	value: '',
 	className: ''
 };
 
-SearchField.propTypes = {
-	placeholder: PropTypes.string.isRequired,
+TextInput.propTypes = {
+	placeholder: PropTypes.string,
 	onType: PropTypes.func.isRequired,
 	onSubmit: PropTypes.func.isRequired,
 	value: PropTypes.string,
 	className: PropTypes.string
 };
 
-export default SearchField;
+export default TextInput;

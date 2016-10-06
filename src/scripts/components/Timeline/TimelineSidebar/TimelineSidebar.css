@@ -44,6 +44,6 @@
 	background: none;
 }
 
-.searchFieldInput :global(svg) {
+.searchFieldInput :global(svg:last-child) {
 	right: 15px;
 }

@@ -1,0 +1,42 @@
+@value transitionSmoothSmoothing, globalTextColor, textInputsPlaceholderColor from '../../../../resources/css/theme/index.css';
+
+.root {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: auto;
+	height: 100%;
+	padding-right: 50px;
+	box-sizing: border-box;
+	max-width: 100%;
+}
+
+.text {
+	font-weight: 300;
+}
+
+.text,
+.pattern,
+.gradient {
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	text-anchor: start;
+}
+
+.gradient {
+	position: absolute;
+	width: 300%;
+	transition: transform 1200ms transitionSmoothSmoothing;
+	transform: translateX(0);
+}
+
+.root:global(.animated) .gradient {
+	transform: translateX(-67%);
+}
+
+.root:global(.notanimated) .gradient {
+	transition: none;
+}
