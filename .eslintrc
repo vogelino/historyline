@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"extends": "airbnb",
 	"rules": {
 		"no-console": "off",
@@ -13,4 +14,40 @@
 		"arrow-parens": ["error", "always"]
 	},
 	"parser": "babel-eslint"
+=======
+	"extends": "eslint:recommended",
+	"ecmaFeatures": {
+		"arrowFunctions": true,
+		"blockBindings": true,
+		"classes": true,
+		"defaultParams": true,
+		"destructering": true,
+		"spread": true,
+		"superInFunctions": true,
+		"templateStrings": true,
+		"unicodeCodePointEscapes": true,
+		"modules": true
+	},
+	"rules": {
+		"quotes": [2, "single"],
+		"eqeqeq": 2,
+		"curly": 2,
+		"camelcase": 2,
+		"strict": [2, "global"],
+		"no-var": 2,
+		"no-unused-vars": 2,
+		"no-console": 0,
+		"max-len": [2, 90, 4],
+		"semi": [2, "always"]
+	},
+	"parser": "babel-eslint",
+	"environment": {
+		"browser": true,
+		"es6": true
+	},
+	"settings": {
+		"ecmascript": 6,
+		"jsx": false
+	}
+>>>>>>> ee7939c131aaa04b4fae1081fa1e9b49126d2b00
 }
